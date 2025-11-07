@@ -1,0 +1,19 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Pedido;
+use App\Models\Producto;
+
+class DetallePedidoFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'pedido_id' => Pedido::factory(),
+            'producto_id' => Producto::factory(),
+            'cantidad' => $this->faker->numberBetween(1, 5),
+        ];
+    }
+}

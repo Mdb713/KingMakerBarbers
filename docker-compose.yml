@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: hairlab_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: hairlab
+      DB_USERNAME: postgres
+      DB_PASSWORD: Admin1.
+
+  db:
+    image: postgres:15
+    container_name: hairlab_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: hairlab
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin1.
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
