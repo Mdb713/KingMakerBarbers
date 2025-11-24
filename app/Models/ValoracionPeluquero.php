@@ -21,11 +21,11 @@ class ValoracionPeluquero extends Model
     // 🔗 Relaciones
     public function cliente()
     {
-        return $this->belongsTo(Usuario::class, 'usuario_id');
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 
     public function peluquero()
     {
-        return $this->belongsTo(Usuario::class, 'peluquero_id');
+        return $this->belongsTo(User::class, 'peluquero_id');
     }
 }

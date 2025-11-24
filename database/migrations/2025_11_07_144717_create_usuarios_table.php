@@ -16,7 +16,7 @@ return new class extends Migration {
     $table->string('rol', 20)->default('cliente');
     $table->string('telefono', 20)->nullable();
     $table->string('direccion', 255)->nullable();
-    $table->timestamps(); // ✅ Esto crea automáticamente created_at y updated_at
+    $table->timestamps();
 });
 
     }

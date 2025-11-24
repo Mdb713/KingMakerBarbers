@@ -2,16 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Usuario;
 
 class CitaFactory extends Factory
 {
     public function definition(): array
     {
         return [
-            'cliente_id' => Usuario::factory(),
-            'peluquero_id' => Usuario::factory(),
+            'cliente_id' => User::factory(),
+            'peluquero_id' => User::factory(),
             'fecha' => $this->faker->date(),
             'hora' => $this->faker->time(),
             'estado' => $this->faker->randomElement(['pendiente', 'confirmada', 'realizada', 'cancelada']),

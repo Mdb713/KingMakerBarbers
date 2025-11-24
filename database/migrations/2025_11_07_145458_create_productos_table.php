@@ -6,16 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void
-    {
-        Schema::create('productos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', 150);
-            $table->text('descripcion')->nullable();
-            $table->integer('stock');
-            $table->text('imagen_url')->nullable();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('productos', function (Blueprint $table) {
+        $table->id();
+        $table->string('nombre');
+        $table->text('descripcion')->nullable();
+        $table->decimal('precio', 8, 2);
+        $table->string('imagen')->nullable();
+        $table->timestamps();
+    });
+}
+
 
     public function down(): void
     {

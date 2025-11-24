@@ -21,12 +21,12 @@ class Cita extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Usuario::class, 'cliente_id');
+        return $this->belongsTo(User::class, 'cliente_id');
     }
 
     public function peluquero()
     {
-        return $this->belongsTo(Usuario::class, 'peluquero_id');
+        return $this->belongsTo(User::class, 'peluquero_id');
     }
 
     public function valoracion()
