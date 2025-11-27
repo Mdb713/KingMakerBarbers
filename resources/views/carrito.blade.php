@@ -21,10 +21,9 @@
             }
         }
     </script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        emailjs.init('TU_PUBLIC_KEY_EMAILJS'); // Reemplaza con tu Public Key
-    </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+
 </head>
 
 <body class="bg-dark text-gray-100 font-sans min-h-screen flex flex-col">
@@ -123,16 +122,16 @@
 
                 <div id="formTarjeta" class="hidden">
                     <label class="block text-gray-300 mb-1">Número de tarjeta:</label>
-                    <input type="text" name="num_tarjeta" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" required pattern="\d{16}" placeholder="1234567812345678">
+                    <input type="text" name="num_tarjeta" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" placeholder="1234567812345678">
                     <label class="block text-gray-300 mb-1">Fecha de expiración:</label>
-                    <input type="text" name="fecha_exp" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" required pattern="\d{2}/\d{2}" placeholder="MM/AA">
+                    <input type="text" name="fecha_exp" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100"  placeholder="MM/AA">
                     <label class="block text-gray-300 mb-1">CVV:</label>
-                    <input type="text" name="cvv" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" required pattern="\d{3}" placeholder="123">
+                    <input type="text" name="cvv" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" " placeholder="123">
                 </div>
 
                 <div id="formPayPal" class="hidden">
                     <label class="block text-gray-300 mb-1">Correo PayPal:</label>
-                    <input type="email" name="paypal_email" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" placeholder="ejemplo@paypal.com" required>
+                    <input type="email" name="paypal_email" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" placeholder="ejemplo@paypal.com">
                 </div>
 
                 <div id="formEfectivo" class="hidden text-gray-300">
@@ -150,42 +149,69 @@
     {{-- Footer --}}
     @include('layouts.footer')
 
-    <script>
-        // Variables globales
-        const carritoJS = @json($carrito);
-        const totalJS = {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }};
-        const emailCliente = "@auth{{ auth()->user()->email }}@endauth";
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-        // Animación reveal
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                } else {
-                    entry.target.classList.add('opacity-0', 'translate-y-10');
-                    entry.target.classList.remove('opacity-100', 'translate-y-0');
-                }
-            });
-        }, { threshold: 0.2 });
-        reveals.forEach(el => observer.observe(el));
+    // Inicializar EmailJS
+    emailjs.init('kFWHJhU1kOf5F5X2Q'); // tu Public Key
 
-        // Elementos del DOM
-        const btnVaciar = document.getElementById('btnVaciarCarrito');
-        const btnPagar = document.getElementById('btnPagar');
-        const modalPago = document.getElementById('modalPago');
-        const cancelarPago = document.getElementById('cancelarPago');
-        const formPago = document.getElementById('formPago');
-        const metodoPago = document.getElementById('metodoPago');
-        const errorPago = document.getElementById('errorPago');
-        const formTarjeta = document.getElementById('formTarjeta');
-        const formPayPal = document.getElementById('formPayPal');
-        const formEfectivo = document.getElementById('formEfectivo');
+    const carritoJS = Object.values(@json($carrito)); // asegurar que es array
+    const totalJS = {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }};
+    const emailCliente = @json(auth()->user()->email ?? null);
+    const nombreCliente = @json(auth()->user()->nombre ?? 'Cliente');
 
-        // Vaciar carrito
-        btnVaciar?.addEventListener('click', () => {
-            if(!confirm("¿Seguro que quieres vaciar el carrito?")) return;
+    const btnPagar = document.getElementById('btnPagar');
+    const modalPago = document.getElementById('modalPago');
+    const cancelarPago = document.getElementById('cancelarPago');
+    const formPago = document.getElementById('formPago');
+    const metodoPago = document.getElementById('metodoPago');
+    const errorPago = document.getElementById('errorPago');
+
+    if (!emailCliente) return; // si no hay usuario autenticado, no hacer nada
+
+    // Abrir modal
+    btnPagar?.addEventListener('click', () => modalPago.classList.remove('hidden'));
+    cancelarPago?.addEventListener('click', () => {
+        modalPago.classList.add('hidden');
+        errorPago.classList.add('hidden');
+        metodoPago.value = "";
+    });
+
+    // Submit del pago
+    formPago?.addEventListener('submit', e => {
+        e.preventDefault();
+
+        if (!metodoPago.value) {
+            errorPago.classList.remove('hidden');
+            return;
+        }
+        errorPago.classList.add('hidden');
+
+        // Crear HTML de los productos para la plantilla
+        let itemsHTML = carritoJS.map(p => `
+            <tr>
+                <td>${p.nombre}</td>
+                <td>${p.cantidad}</td>
+                <td>${p.precio} €</td>
+                <td>${(p.precio * p.cantidad).toFixed(2)} €</td>
+            </tr>
+        `).join('');
+
+        // Enviar EmailJS
+        emailjs.send('service_c2ntdhg', 'template_ipujnwt', {
+            to_email: emailCliente,           // correo destinatario
+            cliente_nombre: nombreCliente,    // nombre cliente
+            cliente_email: emailCliente,      // correo cliente
+            metodo_pago: metodoPago.value,    // método de pago
+            fecha: new Date().toLocaleDateString(),
+            items_html: itemsHTML,
+            total: totalJS.toFixed(2),
+            year: new Date().getFullYear()
+        }).then(() => {
+            alert("Pago realizado y factura enviada.");
+            modalPago.classList.add('hidden');
+
+            // Vaciar carrito vía fetch
             fetch("{{ route('carrito.vaciar') }}", {
                 method: "POST",
                 headers: {
@@ -193,71 +219,17 @@
                     'Accept': 'application/json'
                 }
             }).then(() => location.reload());
+        }).catch(err => {
+            console.error(err);
+            alert("Error al enviar factura: " + (err.text || err));
         });
+    });
 
-        // Abrir modal pago
-        btnPagar?.addEventListener('click', () => modalPago.classList.remove('hidden'));
-        cancelarPago?.addEventListener('click', () => {
-            modalPago.classList.add('hidden');
-            errorPago.classList.add('hidden');
-            metodoPago.value = "";
-            formTarjeta.classList.add('hidden');
-            formPayPal.classList.add('hidden');
-            formEfectivo.classList.add('hidden');
-        });
+});
+</script>
 
-        // Cambiar formulario según método de pago
-        metodoPago?.addEventListener('change', () => {
-            formTarjeta.classList.add('hidden');
-            formPayPal.classList.add('hidden');
-            formEfectivo.classList.add('hidden');
-            if (metodoPago.value === 'tarjeta') formTarjeta.classList.remove('hidden');
-            else if (metodoPago.value === 'paypal') formPayPal.classList.remove('hidden');
-            else if (metodoPago.value === 'efectivo') formEfectivo.classList.remove('hidden');
-        });
 
-        // Submit pago
-        formPago?.addEventListener('submit', e => {
-            e.preventDefault();
-            if (!metodoPago.value) {
-                errorPago.classList.remove('hidden');
-                return;
-            }
-            errorPago.classList.add('hidden');
 
-            // Validar campos
-            let inputs = [];
-            if (metodoPago.value === 'tarjeta') inputs = formTarjeta.querySelectorAll('input');
-            else if (metodoPago.value === 'paypal') inputs = formPayPal.querySelectorAll('input');
-
-            for (let input of inputs) {
-                if (!input.checkValidity()) {
-                    alert('Completa correctamente los campos.');
-                    return;
-                }
-            }
-
-            // Enviar EmailJS
-            emailjs.send('TU_SERVICE_ID', 'TU_TEMPLATE_ID', {
-                metodo: metodoPago.value,
-                carrito: JSON.stringify(carritoJS),
-                total: totalJS,
-                emailCliente: emailCliente
-            }).then(() => {
-                alert("Pago realizado y factura enviada.");
-                modalPago.classList.add('hidden');
-
-                // Vaciar carrito
-                fetch("{{ route('carrito.vaciar') }}", {
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Accept': 'application/json'
-                    }
-                }).then(() => location.reload());
-            }).catch(err => alert("Error al enviar factura: " + (err.text || err)));
-        });
-    </script>
 
 </body>
 </html>
