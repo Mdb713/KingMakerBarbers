@@ -1,54 +1,95 @@
-emailjs.init("kFWHJhU1kOf5F5X2Q");
+// carrito.js
 
-const btnPagar = document.getElementById("btnPagar");
+// Inicializar EmailJS
+(function() {
+    emailjs.init('TU_PUBLIC_KEY_EMAILJS');
+})();
 
-btnPagar?.addEventListener("click", async (e) => {
-    e.preventDefault();
+// Elementos del modal y formulario
+const btnPagar = document.getElementById('btnPagar');
+const modalPago = document.getElementById('modalPago');
+const cancelarPago = document.getElementById('cancelarPago');
+const formPago = document.getElementById('formPago');
+const metodoPago = document.getElementById('metodoPago');
+const errorPago = document.getElementById('errorPago');
+const formTarjeta = document.getElementById('formTarjeta');
+const formPayPal = document.getElementById('formPayPal');
+const formEfectivo = document.getElementById('formEfectivo');
 
-    const carritoData = JSON.parse(document.getElementById("carritoData").value);
-    const emailCliente = document.getElementById("emailCliente").value.trim();
-    const nombreCliente = document.getElementById("clienteNombre").value.trim();
-    const totalCarrito = document.getElementById("totalCarritoInput").value;
+// Abrir modal
+btnPagar?.addEventListener('click', () => modalPago.classList.remove('hidden'));
 
-    // 🔹 Depuración: ver qué email se está cogiendo
-    console.log("Email del cliente:", emailCliente);
-    console.log("Nombre del cliente:", nombreCliente);
-    console.log("Total del carrito:", totalCarrito);
+// Cerrar modal
+cancelarPago?.addEventListener('click', () => {
+    modalPago.classList.add('hidden');
+    errorPago.classList.add('hidden');
+    metodoPago.value = "";
+    formTarjeta.classList.add('hidden');
+    formPayPal.classList.add('hidden');
+    formEfectivo.classList.add('hidden');
+});
 
-    let items_html = "";
-    for (let id in carritoData) {
-        const p = carritoData[id];
-        items_html += `<tr>
-            <td>${p.nombre}</td>
-            <td>${p.cantidad}</td>
-            <td>${p.precio} €</td>
-            <td>${(p.precio * p.cantidad).toFixed(2)} €</td>
-        </tr>`;
+// Mostrar formulario según método
+metodoPago?.addEventListener('change', () => {
+    formTarjeta.classList.add('hidden');
+    formPayPal.classList.add('hidden');
+    formEfectivo.classList.add('hidden');
+
+    if (metodoPago.value === 'tarjeta') formTarjeta.classList.remove('hidden');
+    else if (metodoPago.value === 'paypal') formPayPal.classList.remove('hidden');
+    else if (metodoPago.value === 'efectivo') formEfectivo.classList.remove('hidden');
+});
+
+// Validación y pago
+formPago?.addEventListener('submit', async e => {
+    e.preventDefault(); // Muy importante para que JS controle el submit
+
+    if(!metodoPago.value){
+        errorPago.classList.remove('hidden');
+        return;
+    }
+    errorPago.classList.add('hidden');
+
+    // Validar inputs según método
+    let inputs = [];
+    if(metodoPago.value === 'tarjeta') inputs = formTarjeta.querySelectorAll('input');
+    else if(metodoPago.value === 'paypal') inputs = formPayPal.querySelectorAll('input');
+
+    for(let input of inputs){
+        if(!input.checkValidity()){
+            alert('Completa correctamente los campos.');
+            return;
+        }
     }
 
-    const templateParams = {
-        cliente_nombre: nombreCliente,
-        cliente_email: emailCliente,
-        metodo_pago: "Pago en línea",
-        total: totalCarrito,
-        fecha: new Date().toLocaleDateString(),
-        items_html: items_html,
-        year: new Date().getFullYear()
-    };
+    // Datos para EmailJS
+    const carritoJS = window.carritoData || [];
+    const totalJS = window.carritoTotal || 0;
+    const emailCliente = window.clienteEmail || '';
 
     try {
-        await emailjs.send("service_8i6leb5", "template_ipujnwt", templateParams);
-        alert("Pago confirmado y factura enviada al correo 📩");
+        await emailjs.send('TU_SERVICE_ID', 'TU_TEMPLATE_ID', {
+            metodo: metodoPago.value,
+            carrito: JSON.stringify(carritoJS),
+            total: totalJS,
+            emailCliente: emailCliente
+        });
 
-        fetch("/carrito/vaciar", {
+        alert('Pago realizado y factura enviada.');
+        modalPago.classList.add('hidden');
+
+        // Vaciar carrito
+        await fetch("/carrito/vaciar", {
             method: "POST",
             headers: {
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                Accept: "application/json",
-            },
-        }).then(() => location.reload());
-    } catch (err) {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json'
+            }
+        });
+        location.reload();
+
+    } catch(err){
         console.error(err);
-        alert("Error al enviar la factura. Intenta nuevamente.");
+        alert('Error al enviar factura. Revisa la consola.');
     }
 });

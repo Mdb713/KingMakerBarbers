@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
                 'nombre' => 'Champú Nutritivo',
                 'descripcion' => 'Champú con aceite de argán ideal para cabellos secos.',
                 'stock' => 25,
+                'precio'=>10,
                 'imagen_url' => 'https://via.placeholder.com/150?text=Champu',
 
             ],
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
                 'nombre' => 'Mascarilla Hidratante',
                 'descripcion' => 'Mascarilla capilar con keratina y vitaminas.',
                 'stock' => 15,
+                'precio'=>10,
                 'imagen_url' => 'https://via.placeholder.com/150?text=Mascarilla',
 
             ],
