@@ -143,10 +143,7 @@
             </form>
         </div>
     </div>
-
-    <footer class="bg-dark-gray text-gray-100 p-6 mt-auto">
         @include('layouts.footer')
-    </footer>
  <script>
         const reveals = document.querySelectorAll('.reveal');
 
