@@ -25,8 +25,7 @@
 </head>
   @extends('layouts.navigation')
 <body class="bg-dark text-gray-100 font-sans">
-    
-    <!-- Hero Section -->
+
     <section class="pt-32 pb-16 bg-gradient-to-br from-dark via-dark-gray to-medium-gray relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-20 left-20 w-96 h-96 bg-gold rounded-full blur-3xl"></div>
@@ -39,12 +38,10 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <section class="py-16 bg-dark">
         <div class="max-w-5xl mx-auto px-6">
             <div class="space-y-8" data-aos="fade-up">
-                    
-                    <!-- Información Personal -->
+
                     <div class="bg-medium-gray rounded-3xl border border-gold/10 p-8">
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-2xl font-bold text-gold">Información Personal</h2>
@@ -52,7 +49,7 @@
                                 Editar
                             </button>
                         </div>
-                        
+
                         <form id="profileForm" class="space-y-6">
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
@@ -92,10 +89,9 @@
                         </form>
                     </div>
 
-                    <!-- Próximas Citas -->
                     <div class="bg-medium-gray rounded-3xl border border-gold/10 p-8">
                         <h2 class="text-2xl font-bold mb-6 text-gold">Próximas Citas</h2>
-                        
+
                         <div class="space-y-4">
                             <!-- Cita 1 -->
                             {{-- <div class="bg-dark-gray rounded-xl border border-gold/20 p-6 hover:border-gold transition">
@@ -169,13 +165,9 @@
                         </button>
                     </div>
 
-                    <!-- Historial de Servicios -->
-                    
-
-<!-- Cambiar Contraseña -->
                     <div class="bg-medium-gray rounded-3xl border border-gold/10 p-8">
                         <h2 class="text-2xl font-bold mb-6 text-gold">Seguridad</h2>
-                        
+
                         <form class="space-y-4">
                             <div>
                                 <label class="text-gray-400 text-sm mb-2 block font-bold">Contraseña Actual</label>
@@ -200,14 +192,13 @@
     </section>
 
     <script>
-        // Inicializar AOS
+
         AOS.init({
             duration: 800,
             easing: 'ease-in-out',
             once: true
         });
 
-        // Animaciones con Anime.js
         anime({
             targets: '.bg-medium-gray',
             translateY: [30, 0],
@@ -215,7 +206,6 @@
             delay: anime.stagger(100)
         });
 
-        // Funcionalidad de edición del perfil
         const editBtn = document.getElementById('editBtn');
         const saveBtn = document.getElementById('saveBtn');
         const profileForm = document.getElementById('profileForm');
@@ -225,7 +215,7 @@
             inputs.forEach(input => input.disabled = false);
             saveBtn.classList.remove('hidden');
             editBtn.textContent = 'Cancelar';
-            
+
             if (editBtn.textContent === 'Cancelar') {
                 editBtn.onclick = function() {
                     inputs.forEach(input => input.disabled = true);

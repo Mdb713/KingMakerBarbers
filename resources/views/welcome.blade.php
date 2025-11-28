@@ -7,7 +7,7 @@
     <title>HairLab - Estilo Masculino</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <!-- AOS CSS -->
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -34,8 +34,7 @@
         class="reveal pt-32 pb-24 relative overflow-hidden  translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo3.png') }}" alt="Fondo Inicio"
-                 class="w-full h-full object-cover object-center opacity-40">
-            <!-- Overlay difuminado arriba y abajo -->
+                 class="w-full h-full object-cover object-center opacity-30">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center relative z-10">
@@ -59,18 +58,12 @@
             </div>
             <div class="md:w-1/2">
                 <div class="relative">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-gold to-yellow-600 rounded-3xl blur-2xl opacity-20"></div>
-                    <div class="relative bg-medium-gray rounded-3xl p-1 shadow-2xl">
-                        <div class="bg-dark-gray rounded-2xl p-10 flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="mb-4 flex justify-center relative">
-                                    <div class="absolute inset-0 bg-gold rounded-full blur-xl opacity-30 animate-pulse"></div>
-                                </div>
-                                <p class="text-gold font-bold text-2xl tracking-wider uppercase">HairLab</p>
+
+                                <img src="{{ asset('images/logo2.png') }}"
                             </div>
                         </div>
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </section>
@@ -180,9 +173,9 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="reveal py-24 relative opacity-40 translate-y-10 transition-all duration-700">
+    <section id="contacto" class="reveal py-24 relative  translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo2.png') }}" alt="Fondo Contacto" class="w-full h-full object-cover object-center">
+            <img src="{{ asset('images/fondo2.png') }}" alt="Fondo Contacto" class="w-full opacity-40 h-full object-cover object-center">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-4xl mx-auto px-6 relative z-10">

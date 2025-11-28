@@ -25,7 +25,7 @@
 </head>
   @extends('layouts.navigation')
 <body class="bg-dark text-gray-100 font-sans">
-    <!-- Hero Section -->
+
     <section class="pt-32 pb-16 bg-gradient-to-br from-dark via-dark-gray to-medium-gray relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-20 left-20 w-96 h-96 bg-gold rounded-full blur-3xl"></div>
@@ -40,18 +40,16 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <section class="py-16 bg-dark">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-3 gap-8">
-                
-                <!-- Formulario de Reserva -->
+
                 <div class="lg:col-span-2 bg-medium-gray rounded-3xl border border-gold/10 p-8 md:p-10" data-aos="fade-right">
                     <h2 class="text-3xl font-bold mb-2 text-gold">Completa tu Reserva</h2>
                     <p class="text-gray-400 mb-8">Elige tu servicio y horario preferido</p>
-                    
+
                     <form id="appointmentForm" class="space-y-6">
-                        <!-- Datos Personales -->
+
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label class="text-gray-400 text-sm mb-2 block font-bold">Nombre Completo</label>
@@ -68,7 +66,6 @@
                             <input type="email" placeholder="tu@email.com" required class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition">
                         </div>
 
-                        <!-- Selección de Servicio -->
                         <div>
                             <label class="text-gray-400 text-sm mb-2 block font-bold">Selecciona el Servicio</label>
                             <div class="grid md:grid-cols-3 gap-4">
@@ -101,7 +98,6 @@
                             </div>
                         </div>
 
-                        <!-- Selección de Barbero -->
                         <div>
                             <label class="text-gray-400 text-sm mb-2 block font-bold">Selecciona tu Barbero (Opcional)</label>
                             <select class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition">
@@ -113,7 +109,6 @@
                             </select>
                         </div>
 
-                        <!-- Fecha y Hora -->
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label class="text-gray-400 text-sm mb-2 block font-bold">Fecha</label>
@@ -137,7 +132,6 @@
                             </div>
                         </div>
 
-                        <!-- Notas Adicionales -->
                         <div>
                             <label class="text-gray-400 text-sm mb-2 block font-bold">Notas Adicionales (Opcional)</label>
                             <textarea rows="3" placeholder="¿Alguna preferencia o solicitud especial?" class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none resize-none transition"></textarea>
@@ -149,10 +143,8 @@
                     </form>
                 </div>
 
-                <!-- Sidebar con Información -->
                 <div class="space-y-6" data-aos="fade-left">
-                    
-                    <!-- Información de Contacto -->
+
                     <div class="bg-medium-gray rounded-2xl border border-gold/10 p-6">
                         <h3 class="text-xl font-bold mb-4 text-gold">Información</h3>
                         <div class="space-y-4">
@@ -180,7 +172,6 @@
                         </div>
                     </div>
 
-                    <!-- Política de Cancelación -->
                     <div class="bg-medium-gray rounded-2xl border border-gold/10 p-6">
                         <h3 class="text-xl font-bold mb-4 text-gold">Política de Cancelación</h3>
                         <ul class="space-y-3 text-sm text-gray-400">
@@ -203,8 +194,6 @@
                         </ul>
                     </div>
 
-
-                    <!-- Horarios Disponibles Hoy -->
                     <div class="bg-medium-gray rounded-2xl border border-gold/10 p-6">
                         <h3 class="text-xl font-bold mb-4 text-gold">Disponibilidad Hoy</h3>
                         <div class="flex flex-wrap gap-2">
@@ -223,14 +212,13 @@
   @extends('layouts.footer')
 
     <script>
-        // Inicializar AOS
+
         AOS.init({
             duration: 800,
             easing: 'ease-in-out',
             once: true
         });
 
-        // Animación del formulario con Anime.js
         anime({
             targets: '#appointmentForm input, #appointmentForm select, #appointmentForm textarea',
             translateY: [20, 0],
@@ -238,7 +226,6 @@
             delay: anime.stagger(50)
         });
 
-        // Manejo del formulario
         document.getElementById('appointmentForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('¡Reserva confirmada! Te enviaremos un email de confirmación.');

@@ -49,7 +49,7 @@
                 <div class="bg-medium-gray rounded-3xl border border-gold/10 p-8 md:p-10">
                     <h2 class="text-3xl font-bold mb-2 text-gold">Envíanos un Mensaje</h2>
                     <p class="text-gray-400 mb-8">Te responderemos lo antes posible</p>
-                    
+
                     <form id="contactForm" class="space-y-6">
                         <div>
                             <label class="text-gray-400 text-sm mb-2 block font-bold">Nombre Completo</label>
@@ -95,7 +95,7 @@
 
                     <div class="bg-medium-gray rounded-2xl border border-gold/10 p-8">
                         <h3 class="text-2xl font-bold mb-6 text-gold">Información de Contacto</h3>
-                        
+
                         <div class="space-y-6">
                             <div class="flex items-start gap-4">
                                 <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center text-2xl flex-shrink-0"></div>
@@ -137,7 +137,7 @@
                         </div>
                     </div>
 
-    
+
                     <div class="bg-medium-gray rounded-2xl border border-gold/10 p-8">
                         <h3 class="text-2xl font-bold mb-6 text-gold">Horario de Atención</h3>
                         <div class="space-y-3">
@@ -223,14 +223,12 @@
 
    @extends('layouts.footer')
     <script>
-        // Inicializar AOS
         AOS.init({
             duration: 800,
             easing: 'ease-in-out',
             once: true
         });
 
-        // Animaciones con Anime.js
         anime({
             targets: '.bg-medium-gray',
             translateY: [30, 0],
@@ -238,7 +236,6 @@
             delay: anime.stagger(100)
         });
 
-        // Funcionalidad de edición del perfil
         const editBtn = document.getElementById('editBtn');
         const saveBtn = document.getElementById('saveBtn');
         const profileForm = document.getElementById('profileForm');
@@ -248,7 +245,7 @@
             inputs.forEach(input => input.disabled = false);
             saveBtn.classList.remove('hidden');
             editBtn.textContent = 'Cancelar';
-            
+
             if (editBtn.textContent === 'Cancelar') {
                 editBtn.onclick = function() {
                     inputs.forEach(input => input.disabled = true);

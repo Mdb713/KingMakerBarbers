@@ -6,27 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HairLab - Carrito de Compras</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gold': '#D4AF37',
-                        'dark': '#0A0A0A',
-                        'dark-gray': '#1A1A1A',
-                        'medium-gray': '#2D2D2D',
-                    }
-                }
-            }
-        }
-    </script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
 <body class="bg-dark text-gray-100 font-sans min-h-screen flex flex-col">
 
-    {{-- Navbar --}}
     @include('layouts.navigation')
 
     <main class="flex-1 pt-32 pb-12 bg-dark">
@@ -34,7 +17,6 @@
             <div class="max-w-7xl mx-auto px-6">
                 <h1 class="text-4xl font-bold text-gold mb-8">Tu Carrito</h1>
 
-                {{-- Mensajes --}}
                 @if(session('success'))
                     <div class="mb-6 bg-green-500 text-white p-4 rounded-lg shadow-lg transition-all">
                         {{ session('success') }}
@@ -47,7 +29,6 @@
                 @endif
 
                 @if (count($carrito) > 0)
-                    <!-- Botón Vaciar Carrito -->
                     <div class="flex justify-end mb-4 gap-2">
                         <button id="btnVaciarCarrito"
                             class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition-all shadow">
@@ -55,7 +36,6 @@
                         </button>
                     </div>
 
-                    <!-- Productos -->
                     <div class="grid md:grid-cols-1 gap-6">
                         @foreach ($carrito as $id => $producto)
                             <div class="bg-medium-gray p-6 rounded-2xl flex items-center justify-between">
@@ -78,7 +58,6 @@
                         @endforeach
                     </div>
 
-                    <!-- Total y botón Pagar -->
                     <div class="mt-8 text-right">
                         <h2 class="text-2xl font-bold text-gold">
                             Total: {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }}€
@@ -102,7 +81,6 @@
         </section>
     </main>
 
-    {{-- Modal de Pago --}}
     <div id="modalPago" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
         <div class="bg-dark-gray rounded-xl w-96 p-6 relative">
             <h2 class="text-2xl font-bold text-gold mb-4">Selecciona método de pago</h2>

@@ -22,29 +22,26 @@
 </head>
 <body class="bg-dark text-gray-100 font-sans">
 
-    {{-- Navbar --}}
     @include('layouts.navigation')
 
-    <!-- HERO -->
     <section class="pt-32 pb-12 bg-gradient-to-br from-dark via-dark-gray to-medium-gray text-center">
         <h1 class="text-5xl font-bold text-gold mb-4">Productos de Peluquería</h1>
         <p class="text-gray-400 text-lg">Descubre nuestros productos premium para el cuidado del cabello y la barba</p>
     </section>
 
     <div class="max-w-7xl mx-auto px-6 mt-8">
-        {{-- Mensaje de éxito --}}
+
         @if(session('success'))
             <div class="mb-6 bg-green-500 text-white p-4 rounded-lg shadow-lg transition-all">
                 {{ session('success') }}
             </div>
         @endif
 
-        <!-- PRODUCTOS -->
         <section class="py-16 bg-dark">
             <div class="grid md:grid-cols-3 gap-8">
                 @foreach($productos as $producto)
                 <div class="bg-medium-gray rounded-2xl p-6 shadow-md hover:shadow-2xl transition-all transform hover:-translate-y-1 hover:scale-105 border border-transparent hover:border-gold/50 relative overflow-hidden group">
-                    {{-- Efecto brillo dorado --}}
+
                     <div class="absolute inset-0 bg-gradient-to-tr from-gold/20 via-transparent to-gold/20 opacity-0 group-hover:opacity-50 transition-opacity rounded-2xl pointer-events-none"></div>
 
                     <img src="{{ asset($producto->imagen_url) }}" alt="{{ $producto->nombre }}" class="rounded-lg mb-4 w-full object-cover">
@@ -53,7 +50,6 @@
                     <div class="flex justify-between items-center">
                         <span class="text-gold font-bold text-lg">{{ $producto->precio }}€</span>
 
-                        {{-- Solo mostrar botón si el usuario está autenticado --}}
                         @auth
                         <form action="{{ route('carrito.agregar') }}" method="POST">
                             @csrf
@@ -71,7 +67,6 @@
         </section>
     </div>
 
-    {{-- Footer --}}
     @include('layouts.footer')
 
     <script>

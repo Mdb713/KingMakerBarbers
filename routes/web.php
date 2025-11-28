@@ -29,7 +29,7 @@ Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'
 // Enviar formulario de registro
 Route::post('/register', [RegisteredUserController::class, 'register'])
     ->name('register.post');
-    
+
 Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil')->middleware('auth');
 
 Route::get('/productos', [ProductoController::class, 'mostrarProductos'])->name('productos');
@@ -38,3 +38,24 @@ Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
 Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
 Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrito.pagar')->middleware('auth');
 Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar')->middleware('auth');
+
+// Página Reservas
+Route::get('/reserva', function () {
+    return view('reservas'); // crea la vista resources/views/reserva.blade.php
+})->name('reservas');
+
+// Página Contacto
+Route::get('/contacto', function () {
+    return view('contacto'); // crea la vista resources/views/contacto.blade.php
+})->name('contacto');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/panel', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.panel');
+    Route::get('/usuarios/create', [AdminController::class, 'createUser'])->name('usuarios.create');
+    Route::post('/usuarios', [AdminController::class, 'storeUser'])->name('usuarios.store');
+    Route::get('/usuarios/{user}/edit', [AdminController::class, 'editUser'])->name('usuarios.edit');
+    Route::put('/usuarios/{user}', [AdminController::class, 'updateUser'])->name('usuarios.update');
+    Route::delete('/usuarios/{user}', [AdminController::class, 'deleteUser'])->name('usuarios.delete');
+});
+
+
