@@ -1,37 +1,34 @@
 <nav class="bg-dark-gray/95 backdrop-blur-sm shadow-2xl fixed top-0 left-0 w-full z-50 border-b border-gold/20">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-            <div class="w-14 h-14 bg-gradient-to-br from-gold to-yellow-600 rounded-lg flex items-center justify-center transform group-hover:rotate-6 transition-transform">
-                <span class="text-2xl font-bold text-dark">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                </span>
-            </div>
-            <h1 class="text-3xl font-bold">
-                <span class="text-gold">Hair</span><span class="text-white">Lab</span>
+        <a href="{{ url('/') }}" class="flex items-center gap-4 group">
+<div class="w-20 h-20 bg-gradient-to-br from-gold to-yellow-600 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-transform">
+    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-full h-full object-contain scale-125">
+</div>
+
+
+            <h1 class="text-4xl font-bold">
+                <span class="text-gold">KingMaker</span><span class="text-white">Barbers</span>
             </h1>
         </a>
 
-
         <ul class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-wider items-center">
             <li><a href="{{ url('/') }}" class="hover:text-gold transition-colors">Inicio</a></li>
-            <li><a href="#nosotros" class="hover:text-gold transition-colors">Nosotros</a></li>
+            <li><a href="{{ route('nosotros') }}" class="hover:text-gold transition-colors">Nosotros</a></li>
             <li><a href="{{ route('productos') }}" class="hover:text-gold transition-colors">Productos</a></li>
-            <li><a href="#equipo" class="hover:text-gold transition-colors">Reservas</a></li>
-            <li><a href="#contacto" class="hover:text-gold transition-colors">Contacto</a></li>
+            <li><a href="{{ route('reservas') }}" class="hover:text-gold transition-colors">Reservas</a></li>
+            <li><a href="{{ route('contacto') }}" class="hover:text-gold transition-colors">Contacto</a></li>
 
             @auth
-
-                <li>
-                    <a href="{{ route('perfil') }}" class="text-gold hover:text-yellow-500 transition-colors">Perfil</a>
-                </li>
+                <li><a href="{{ route('perfil') }}" class="text-gold hover:text-yellow-500 transition-colors">Perfil</a></li>
 
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="text-gold hover:text-yellow-500 transition-colors font-semibold">Cerrar Sesión</button>
+                        <button type="submit" class="text-gold hover:text-yellow-500 transition-colors font-semibold">
+                            Cerrar Sesión
+                        </button>
                     </form>
                 </li>
-
 
                 <li class="relative">
                     <a href="{{ route('carrito.ver') }}" class="hover:text-gold transition-colors flex items-center">
@@ -48,9 +45,7 @@
                     </a>
                 </li>
             @else
-                <li>
-                    <a href="{{ route('login') }}" class="text-gold hover:text-yellow-500 transition-colors">Iniciar Sesión</a>
-                </li>
+                <li><a href="{{ route('login') }}" class="text-gold hover:text-yellow-500 transition-colors">Iniciar Sesión</a></li>
             @endauth
         </ul>
 
