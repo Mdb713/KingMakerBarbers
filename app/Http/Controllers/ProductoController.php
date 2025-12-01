@@ -9,10 +9,8 @@ class ProductoController extends Controller
 {
     public function mostrarProductos()
     {
-        // Trae todos los productos
         $productos = Producto::all();
 
-        // Envía los productos a la vista
         return view('productos', compact('productos'));
     }
 }

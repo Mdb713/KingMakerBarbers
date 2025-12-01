@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReservaController;
 
 Route::get('/', function () {
     return view('welcome'); // o tu vista principal
@@ -30,7 +32,13 @@ Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'
 Route::post('/register', [RegisteredUserController::class, 'register'])
     ->name('register.post');
 
-Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/reserva', [ReservaController::class, 'reservas'])->name('reservas');
+    Route::post('/reserva', [ReservaController::class, 'store'])->name('reservas.store'); // <--- coincide con tu Blade
+});
+
+
+
 
 Route::get('/productos', [ProductoController::class, 'mostrarProductos'])->name('productos');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
@@ -43,6 +51,8 @@ Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carr
 Route::get('/reserva', function () {
     return view('reservas'); // crea la vista resources/views/reserva.blade.php
 })->name('reservas');
+Route::get('/reserva', [ReservaController::class, 'reservas'])->name('reservas')->middleware('auth');
+Route::post('/reserva', [ReservaController::class, 'store'])->name('reserva.store')->middleware('auth');
 
 // Página Contacto
 Route::get('/contacto', function () {

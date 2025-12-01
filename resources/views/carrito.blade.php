@@ -6,6 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HairLab - Carrito de Compras</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Rye&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gold': '#D4AF37',
+                        'dark': '#0A0A0A',
+                        'dark-gray': '#1A1A1A',
+                        'medium-gray': '#2D2D2D',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        title: ['Rye', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
 <body class="bg-dark text-gray-100 font-sans min-h-screen flex flex-col">
@@ -15,15 +40,15 @@
     <main class="flex-1 pt-32 pb-12 bg-dark">
         <section class="bg-dark text-gray-100">
             <div class="max-w-7xl mx-auto px-6">
-                <h1 class="text-4xl font-bold text-gold mb-8">Tu Carrito</h1>
+                <h1 class="text-4xl font-title font-bold text-gold mb-8">Tu Carrito</h1>
 
                 @if(session('success'))
-                    <div class="mb-6 bg-green-500 text-white p-4 rounded-lg shadow-lg transition-all">
+                    <div class="mb-6 bg-green-500 text-white p-4 rounded-lg shadow-lg transition-all font-sans">
                         {{ session('success') }}
                     </div>
                 @endif
                 @if(session('error'))
-                    <div class="mb-6 bg-red-500 text-white p-4 rounded-lg shadow-lg transition-all">
+                    <div class="mb-6 bg-red-500 text-white p-4 rounded-lg shadow-lg transition-all font-sans">
                         {{ session('error') }}
                     </div>
                 @endif
@@ -31,7 +56,7 @@
                 @if (count($carrito) > 0)
                     <div class="flex justify-end mb-4 gap-2">
                         <button id="btnVaciarCarrito"
-                            class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition-all shadow">
+                            class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition-all shadow font-sans">
                             Vaciar Carrito
                         </button>
                     </div>
@@ -43,38 +68,38 @@
                                     <img src="{{ asset($producto['imagen_url']) }}" alt="{{ $producto['nombre'] }}"
                                         class="w-24 h-24 rounded-lg">
                                     <div>
-                                        <h3 class="text-xl font-bold text-gold">{{ $producto['nombre'] }}</h3>
-                                        <p class="text-gray-400">Cantidad: {{ $producto['cantidad'] }}</p>
-                                        <p class="text-gray-400">Precio: {{ $producto['precio'] }}€</p>
+                                        <h3 class="text-xl font-title font-bold text-gold">{{ $producto['nombre'] }}</h3>
+                                        <p class="text-gray-400 font-sans">Cantidad: {{ $producto['cantidad'] }}</p>
+                                        <p class="text-gray-400 font-sans">Precio: {{ $producto['precio'] }}€</p>
                                     </div>
                                 </div>
                                 <form action="{{ route('carrito.eliminar') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="producto_id" value="{{ $id }}">
                                     <button type="submit"
-                                        class="bg-red-500 text-white px-4 py-2 rounded-lg">Eliminar</button>
+                                        class="bg-red-500 text-white px-4 py-2 rounded-lg font-sans">Eliminar</button>
                                 </form>
                             </div>
                         @endforeach
                     </div>
 
                     <div class="mt-8 text-right">
-                        <h2 class="text-2xl font-bold text-gold">
+                        <h2 class="text-2xl font-title font-bold text-gold">
                             Total: {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }}€
                         </h2>
 
                         @auth
                         <button id="btnPagar"
-                            class="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-all shadow-lg">
+                            class="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-all shadow-lg font-sans">
                             Pagar
                         </button>
                         @else
-                        <p class="mt-4 text-gray-400">Debes iniciar sesión para poder pagar.</p>
+                        <p class="mt-4 text-gray-400 font-sans">Debes iniciar sesión para poder pagar.</p>
                         @endauth
                     </div>
 
                 @else
-                    <p class="text-gray-400">Tu carrito está vacío.</p>
+                    <p class="text-gray-400 font-sans">Tu carrito está vacío.</p>
                 @endif
 
             </div>
@@ -83,8 +108,8 @@
 
     <div id="modalPago" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
         <div class="bg-dark-gray rounded-xl w-96 p-6 relative">
-            <h2 class="text-2xl font-bold text-gold mb-4">Selecciona método de pago</h2>
-            <form id="formPago">
+            <h2 class="text-2xl font-title font-bold text-gold mb-4">Selecciona método de pago</h2>
+            <form id="formPago" class="font-sans">
                 <div class="mb-4">
                     <label class="block text-gray-300 mb-2">Método de pago:</label>
                     <select id="metodoPago" class="w-full p-2 rounded-lg bg-medium-gray text-gray-100" required>
@@ -115,14 +140,16 @@
                 </div>
 
                 <div class="flex justify-end gap-2 mt-4">
-                    <button type="button" id="cancelarPago" class="px-4 py-2 bg-gray-500 rounded-lg hover:bg-gray-600 text-white">Cancelar</button>
-                    <button type="submit" class="px-4 py-2 bg-gold rounded-lg hover:bg-yellow-500 text-dark font-bold">Confirmar</button>
+                    <button type="button" id="cancelarPago" class="px-4 py-2 bg-gray-500 rounded-lg hover:bg-gray-600 text-white font-sans">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-gold rounded-lg hover:bg-yellow-500 text-dark font-title font-bold">Confirmar</button>
                 </div>
             </form>
         </div>
     </div>
-        @include('layouts.footer')
- <script>
+
+    @include('layouts.footer')
+
+    <script>
         const reveals = document.querySelectorAll('.reveal');
 
         const observer = new IntersectionObserver((entries) => {
@@ -139,92 +166,93 @@
 
         reveals.forEach((el) => observer.observe(el));
     </script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
 
-    emailjs.init('kFWHJhU1kOf5F5X2Q');
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-    const carritoJS = Object.values(@json($carrito));
-    const totalJS = {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }};
-    const emailCliente = @json(auth()->user()->email ?? null);
-    const nombreCliente = @json(auth()->user()->nombre ?? 'Cliente');
+        emailjs.init('kFWHJhU1kOf5F5X2Q');
 
-    const btnPagar = document.getElementById('btnPagar');
-    const modalPago = document.getElementById('modalPago');
-    const cancelarPago = document.getElementById('cancelarPago');
-    const formPago = document.getElementById('formPago');
-    const metodoPago = document.getElementById('metodoPago');
-    const errorPago = document.getElementById('errorPago');
-    const formTarjeta = document.getElementById('formTarjeta');
-    const formPayPal = document.getElementById('formPayPal');
-    const formEfectivo = document.getElementById('formEfectivo');
+        const carritoJS = Object.values(@json($carrito));
+        const totalJS = {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }};
+        const emailCliente = @json(auth()->user()->email ?? null);
+        const nombreCliente = @json(auth()->user()->nombre ?? 'Cliente');
 
-    if (!emailCliente) return;
+        const btnPagar = document.getElementById('btnPagar');
+        const modalPago = document.getElementById('modalPago');
+        const cancelarPago = document.getElementById('cancelarPago');
+        const formPago = document.getElementById('formPago');
+        const metodoPago = document.getElementById('metodoPago');
+        const errorPago = document.getElementById('errorPago');
+        const formTarjeta = document.getElementById('formTarjeta');
+        const formPayPal = document.getElementById('formPayPal');
+        const formEfectivo = document.getElementById('formEfectivo');
 
-    btnPagar?.addEventListener('click', () => modalPago.classList.remove('hidden'));
-    cancelarPago?.addEventListener('click', () => {
-        modalPago.classList.add('hidden');
-        errorPago.classList.add('hidden');
-        metodoPago.value = "";
-        formTarjeta.classList.add('hidden');
-        formPayPal.classList.add('hidden');
-        formEfectivo.classList.add('hidden');
-    });
+        if (!emailCliente) return;
 
-    metodoPago?.addEventListener('change', () => {
-        formTarjeta.classList.add('hidden');
-        formPayPal.classList.add('hidden');
-        formEfectivo.classList.add('hidden');
-        if (metodoPago.value === 'tarjeta') formTarjeta.classList.remove('hidden');
-        else if (metodoPago.value === 'paypal') formPayPal.classList.remove('hidden');
-        else if (metodoPago.value === 'efectivo') formEfectivo.classList.remove('hidden');
-    });
-
-    formPago?.addEventListener('submit', e => {
-        e.preventDefault();
-
-        if (!metodoPago.value) {
-            errorPago.classList.remove('hidden');
-            return;
-        }
-        errorPago.classList.add('hidden');
-
-        let itemsHTML = carritoJS.map(p => `
-            <tr>
-                <td>${p.nombre}</td>
-                <td>${p.cantidad}</td>
-                <td>${p.precio} €</td>
-                <td>${(p.precio * p.cantidad).toFixed(2)} €</td>
-            </tr>
-        `).join('');
-
-        emailjs.send('service_c2ntdhg', 'template_ipujnwt', {
-            to_email: emailCliente,
-            cliente_nombre: nombreCliente,
-            cliente_email: emailCliente,
-            metodo_pago: metodoPago.value,
-            fecha: new Date().toLocaleDateString(),
-            items_html: itemsHTML,
-            total: totalJS.toFixed(2),
-            year: new Date().getFullYear()
-        }).then(() => {
-            alert("Pago realizado y factura enviada.");
+        btnPagar?.addEventListener('click', () => modalPago.classList.remove('hidden'));
+        cancelarPago?.addEventListener('click', () => {
             modalPago.classList.add('hidden');
+            errorPago.classList.add('hidden');
+            metodoPago.value = "";
+            formTarjeta.classList.add('hidden');
+            formPayPal.classList.add('hidden');
+            formEfectivo.classList.add('hidden');
+        });
 
-            fetch("{{ route('carrito.vaciar') }}", {
-                method: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    'Accept': 'application/json'
-                }
-            }).then(() => location.reload());
-        }).catch(err => {
-            console.error(err);
-            alert("Error al enviar factura: " + (err.text || err));
+        metodoPago?.addEventListener('change', () => {
+            formTarjeta.classList.add('hidden');
+            formPayPal.classList.add('hidden');
+            formEfectivo.classList.add('hidden');
+            if (metodoPago.value === 'tarjeta') formTarjeta.classList.remove('hidden');
+            else if (metodoPago.value === 'paypal') formPayPal.classList.remove('hidden');
+            else if (metodoPago.value === 'efectivo') formEfectivo.classList.remove('hidden');
+        });
+
+        formPago?.addEventListener('submit', e => {
+            e.preventDefault();
+
+            if (!metodoPago.value) {
+                errorPago.classList.remove('hidden');
+                return;
+            }
+            errorPago.classList.add('hidden');
+
+            let itemsHTML = carritoJS.map(p => `
+                <tr>
+                    <td>${p.nombre}</td>
+                    <td>${p.cantidad}</td>
+                    <td>${p.precio} €</td>
+                    <td>${(p.precio * p.cantidad).toFixed(2)} €</td>
+                </tr>
+            `).join('');
+
+            emailjs.send('service_c2ntdhg', 'template_ipujnwt', {
+                to_email: emailCliente,
+                cliente_nombre: nombreCliente,
+                cliente_email: emailCliente,
+                metodo_pago: metodoPago.value,
+                fecha: new Date().toLocaleDateString(),
+                items_html: itemsHTML,
+                total: totalJS.toFixed(2),
+                year: new Date().getFullYear()
+            }).then(() => {
+                alert("Pago realizado y factura enviada.");
+                modalPago.classList.add('hidden');
+
+                fetch("{{ route('carrito.vaciar') }}", {
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Accept': 'application/json'
+                    }
+                }).then(() => location.reload());
+            }).catch(err => {
+                console.error(err);
+                alert("Error al enviar factura: " + (err.text || err));
+            });
         });
     });
-});
-</script>
+    </script>
 
 </body>
 </html>
