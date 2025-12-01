@@ -6,29 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HairLab - Carrito de Compras</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gold': '#D4AF37',
-                        'dark': '#0A0A0A',
-                        'dark-gray': '#1A1A1A',
-                        'medium-gray': '#2D2D2D',
-                    }
-                }
-            }
-        }
-    </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-
 </head>
 
 <body class="bg-dark text-gray-100 font-sans min-h-screen flex flex-col">
 
-    {{-- Navbar --}}
     @include('layouts.navigation')
 
     <main class="flex-1 pt-32 pb-12 bg-dark">
@@ -36,7 +17,6 @@
             <div class="max-w-7xl mx-auto px-6">
                 <h1 class="text-4xl font-bold text-gold mb-8">Tu Carrito</h1>
 
-                {{-- Mensajes --}}
                 @if(session('success'))
                     <div class="mb-6 bg-green-500 text-white p-4 rounded-lg shadow-lg transition-all">
                         {{ session('success') }}
@@ -49,7 +29,6 @@
                 @endif
 
                 @if (count($carrito) > 0)
-                    <!-- Botón Vaciar Carrito -->
                     <div class="flex justify-end mb-4 gap-2">
                         <button id="btnVaciarCarrito"
                             class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition-all shadow">
@@ -57,7 +36,6 @@
                         </button>
                     </div>
 
-                    <!-- Productos -->
                     <div class="grid md:grid-cols-1 gap-6">
                         @foreach ($carrito as $id => $producto)
                             <div class="bg-medium-gray p-6 rounded-2xl flex items-center justify-between">
@@ -80,7 +58,6 @@
                         @endforeach
                     </div>
 
-                    <!-- Total y botón Pagar -->
                     <div class="mt-8 text-right">
                         <h2 class="text-2xl font-bold text-gold">
                             Total: {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }}€
@@ -104,7 +81,6 @@
         </section>
     </main>
 
-    {{-- Modal de Pago --}}
     <div id="modalPago" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
         <div class="bg-dark-gray rounded-xl w-96 p-6 relative">
             <h2 class="text-2xl font-bold text-gold mb-4">Selecciona método de pago</h2>
@@ -124,9 +100,9 @@
                     <label class="block text-gray-300 mb-1">Número de tarjeta:</label>
                     <input type="text" name="num_tarjeta" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" placeholder="1234567812345678">
                     <label class="block text-gray-300 mb-1">Fecha de expiración:</label>
-                    <input type="text" name="fecha_exp" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100"  placeholder="MM/AA">
+                    <input type="text" name="fecha_exp" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" placeholder="MM/AA">
                     <label class="block text-gray-300 mb-1">CVV:</label>
-                    <input type="text" name="cvv" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" " placeholder="123">
+                    <input type="text" name="cvv" class="w-full p-2 rounded-lg mb-2 bg-medium-gray text-gray-100" placeholder="123">
                 </div>
 
                 <div id="formPayPal" class="hidden">
@@ -145,17 +121,30 @@
             </form>
         </div>
     </div>
+        @include('layouts.footer')
+ <script>
+        const reveals = document.querySelectorAll('.reveal');
 
-    {{-- Footer --}}
-    @include('layouts.footer')
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                } else {
+                    entry.target.classList.add('opacity-0', 'translate-y-10');
+                    entry.target.classList.remove('opacity-100', 'translate-y-0');
+                }
+            });
+        }, { threshold: 0.2 });
 
+        reveals.forEach((el) => observer.observe(el));
+    </script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Inicializar EmailJS
-    emailjs.init('kFWHJhU1kOf5F5X2Q'); // tu Public Key
+    emailjs.init('kFWHJhU1kOf5F5X2Q');
 
-    const carritoJS = Object.values(@json($carrito)); // asegurar que es array
+    const carritoJS = Object.values(@json($carrito));
     const totalJS = {{ collect($carrito)->sum(fn($p) => $p['precio'] * $p['cantidad']) }};
     const emailCliente = @json(auth()->user()->email ?? null);
     const nombreCliente = @json(auth()->user()->nombre ?? 'Cliente');
@@ -166,18 +155,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const formPago = document.getElementById('formPago');
     const metodoPago = document.getElementById('metodoPago');
     const errorPago = document.getElementById('errorPago');
+    const formTarjeta = document.getElementById('formTarjeta');
+    const formPayPal = document.getElementById('formPayPal');
+    const formEfectivo = document.getElementById('formEfectivo');
 
-    if (!emailCliente) return; // si no hay usuario autenticado, no hacer nada
+    if (!emailCliente) return;
 
-    // Abrir modal
     btnPagar?.addEventListener('click', () => modalPago.classList.remove('hidden'));
     cancelarPago?.addEventListener('click', () => {
         modalPago.classList.add('hidden');
         errorPago.classList.add('hidden');
         metodoPago.value = "";
+        formTarjeta.classList.add('hidden');
+        formPayPal.classList.add('hidden');
+        formEfectivo.classList.add('hidden');
     });
 
-    // Submit del pago
+    metodoPago?.addEventListener('change', () => {
+        formTarjeta.classList.add('hidden');
+        formPayPal.classList.add('hidden');
+        formEfectivo.classList.add('hidden');
+        if (metodoPago.value === 'tarjeta') formTarjeta.classList.remove('hidden');
+        else if (metodoPago.value === 'paypal') formPayPal.classList.remove('hidden');
+        else if (metodoPago.value === 'efectivo') formEfectivo.classList.remove('hidden');
+    });
+
     formPago?.addEventListener('submit', e => {
         e.preventDefault();
 
@@ -187,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         errorPago.classList.add('hidden');
 
-        // Crear HTML de los productos para la plantilla
         let itemsHTML = carritoJS.map(p => `
             <tr>
                 <td>${p.nombre}</td>
@@ -197,12 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
             </tr>
         `).join('');
 
-        // Enviar EmailJS
         emailjs.send('service_c2ntdhg', 'template_ipujnwt', {
-            to_email: emailCliente,           // correo destinatario
-            cliente_nombre: nombreCliente,    // nombre cliente
-            cliente_email: emailCliente,      // correo cliente
-            metodo_pago: metodoPago.value,    // método de pago
+            to_email: emailCliente,
+            cliente_nombre: nombreCliente,
+            cliente_email: emailCliente,
+            metodo_pago: metodoPago.value,
             fecha: new Date().toLocaleDateString(),
             items_html: itemsHTML,
             total: totalJS.toFixed(2),
@@ -211,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Pago realizado y factura enviada.");
             modalPago.classList.add('hidden');
 
-            // Vaciar carrito vía fetch
             fetch("{{ route('carrito.vaciar') }}", {
                 method: "POST",
                 headers: {
@@ -224,12 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Error al enviar factura: " + (err.text || err));
         });
     });
-
 });
 </script>
-
-
-
 
 </body>
 </html>

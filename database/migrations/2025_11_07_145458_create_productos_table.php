@@ -12,7 +12,8 @@ return new class extends Migration {
         $table->string('nombre');
         $table->text('descripcion')->nullable();
         $table->decimal('precio', 8, 2);
-        $table->string('imagen')->nullable();
+        $table->decimal('stock');
+        $table->string('imagen_url')->nullable();
         $table->timestamps();
     });
 }
