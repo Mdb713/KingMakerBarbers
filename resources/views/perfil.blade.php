@@ -53,11 +53,11 @@
                 <input type="text" name="rol" value="{{ old('rol', $usuario->rol) }}" readonly
                     class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-300 cursor-not-allowed">
             </div>
-            <div>
+            {{-- <div>
                 <label class="block text-gray-400 font-semibold mb-2">Fecha de Registro</label>
                 <input type="text" value="{{ $usuario->fecha_registro }}" readonly
                     class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-300 cursor-not-allowed">
-            </div>
+            </div> --}}
         </div>
 
         <button type="submit"

@@ -9,9 +9,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $usuarios = User::all();
-
-        return view('adminPanel', compact('usuarios'));
+    $usuarios = User::paginate(5);
+    return view('admin.panel', compact('usuarios'));
     }
 
     public function createUser()

@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReservaController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome'); // o tu vista principal
@@ -33,12 +33,15 @@ Route::post('/register', [RegisteredUserController::class, 'register'])
     ->name('register.post');
 
 Route::middleware(['auth'])->group(function () {
+    // Página de reservas
     Route::get('/reserva', [ReservaController::class, 'reservas'])->name('reservas');
-    Route::post('/reserva', [ReservaController::class, 'store'])->name('reservas.store'); // <--- coincide con tu Blade
+    Route::post('/reserva', [ReservaController::class, 'store'])->name('reservas.store');
 });
 
-
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
+    Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
+});
 
 Route::get('/productos', [ProductoController::class, 'mostrarProductos'])->name('productos');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
@@ -67,5 +70,3 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/usuarios/{user}', [AdminController::class, 'updateUser'])->name('usuarios.update');
     Route::delete('/usuarios/{user}', [AdminController::class, 'deleteUser'])->name('usuarios.delete');
 });
-
-

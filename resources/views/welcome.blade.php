@@ -45,7 +45,7 @@
     <!-- SECCIÓN INICIO -->
     <section id="inicio" class="reveal pt-32 pb-24 relative overflow-hidden translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo3.png') }}" alt="Fondo Inicio"
+            <img src="{{ asset('images/fondo3.webp') }}" alt="Fondo Inicio"
                  class="w-full h-full object-cover object-center opacity-30">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
@@ -76,7 +76,7 @@
     <!-- SOBRE NOSOTROS Y SERVICIOS -->
     <section class="relative overflow-hidden">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo1.svg') }}" alt="Fondo Barbería"
+            <img src="{{ asset('images/fondo1.webp') }}" alt="Fondo Barbería"
                  class="w-full h-full object-cover object-center opacity-20">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
@@ -148,7 +148,7 @@
     <!-- EQUIPO -->
     <section id="equipo" class="reveal py-24 relative opacity-40 translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo3.png') }}" alt="Fondo Equipo" class="w-full h-full object-cover object-center opacity-40 ">
+            <img src="{{ asset('images/fondo3.webp') }}" alt="Fondo Equipo" class="w-full h-full object-cover object-center opacity-40 ">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
@@ -179,7 +179,7 @@
     <!-- CONTACTO -->
     <section id="contacto" class="reveal py-24 relative translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo2.png') }}" alt="Fondo Contacto" class="w-full opacity-40 h-full object-cover object-center">
+            <img src="{{ asset('images/fondo2.webp') }}" alt="Fondo Contacto" class="w-full opacity-40 h-full object-cover object-center">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-4xl mx-auto px-6 relative z-10">
