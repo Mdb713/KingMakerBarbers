@@ -2,7 +2,6 @@
 
 <body class="bg-dark text-gray-100 font-body">
 
-    <!-- SECCIÓN ENCABEZADO -->
     <section class="pt-32 pb-16 bg-gradient-to-br from-dark via-dark-gray to-medium-gray relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 text-center relative z-10" data-aos="fade-up">
             <span class="text-gold text-sm font-bold uppercase tracking-widest font-body">Agenda tu Visita</span>
@@ -13,12 +12,10 @@
         </div>
     </section>
 
-    <!-- FORMULARIO DE RESERVA -->
     <section class="py-16 bg-dark">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-3 gap-8">
 
-                <!-- FORMULARIO -->
                 <div class="lg:col-span-2 bg-medium-gray rounded-3xl border border-gold/10 p-8 md:p-10" data-aos="fade-right">
                     <h2 class="text-3xl font-heading mb-2 text-gold">Completa tu Reserva</h2>
                     <p class="text-gray-400 mb-8 font-body">Elige tu servicio y horario preferido</p>
@@ -31,8 +28,6 @@
 
                     <form action="{{ route('reservas.store') }}" method="POST" class="space-y-6">
                         @csrf
-
-                        <!-- SERVICIOS -->
                         <div>
                             <label class="text-gray-400 text-sm mb-2 block font-bold font-body">Servicio</label>
                             <select name="servicio" required class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition font-body">
@@ -42,8 +37,6 @@
                                 <option value="completo">Servicio completo - 35€</option>
                             </select>
                         </div>
-
-                        <!-- PELUQUERO -->
                         <div>
                             <label class="text-gray-400 text-sm mb-2 block font-bold font-body">Barbero (Opcional)</label>
                             <select name="peluquero_id" class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition font-body">
@@ -54,7 +47,6 @@
                             </select>
                         </div>
 
-                        <!-- FECHA Y HORA -->
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label class="text-gray-400 text-sm mb-2 block font-bold font-body">Fecha</label>
@@ -77,7 +69,6 @@
                     </form>
                 </div>
 
-                <!-- INFORMACIÓN LATERAL -->
                 <div data-aos="fade-left" class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                     <h3 class="text-xl font-heading mb-4 text-gold">Información</h3>
                     <p class="text-gray-400 text-sm font-body">Calle Real 25, Sevilla</p>
@@ -88,4 +79,3 @@
     </section>
 </body>
 </html>
-@endsection

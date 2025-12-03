@@ -360,7 +360,6 @@
         </div>
     </div>
 
-    {{-- Modal Vaciar Carrito --}}
     <div id="modalVaciar"
         class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <div class="bg-dark-gray text-gray-100 p-6 rounded-2xl shadow-2xl w-80 border border-gold/20">
@@ -379,7 +378,6 @@
         </div>
     </div>
 
-    {{-- Modal Pago Exitoso --}}
     <div id="modalPagoExito"
         class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <div class="bg-dark-gray text-gray-100 p-6 rounded-2xl shadow-2xl w-80 border border-green-500/30 text-center">
@@ -392,7 +390,6 @@
         </div>
     </div>
 
-    {{-- Modal Error de Pago --}}
     <div id="modalPagoError"
         class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <div class="bg-dark-gray text-gray-100 p-6 rounded-2xl shadow-2xl w-80 border border-red-500/30 text-center">
@@ -430,7 +427,6 @@
             const formPayPal = document.getElementById('formPayPal');
             const formEfectivo = document.getElementById('formEfectivo');
 
-            // Nuevos modales
             const modalPagoExito = document.getElementById("modalPagoExito");
             const cerrarPagoExito = document.getElementById("cerrarPagoExito");
 
@@ -453,7 +449,6 @@
             btnPagar?.addEventListener('click', () => {
                 const metodoSeleccionado = document.querySelector('input[name="metodo_pago"]:checked');
                 if (!metodoSeleccionado) {
-                    // MOSTRAR MODAL DE ERROR (en vez de alert)
                     modalPagoError.classList.remove("hidden");
                     return;
                 }
@@ -495,7 +490,6 @@
                     year: new Date().getFullYear()
                 }).then(() => {
 
-                    // ✨ MODAL DE PAGO EXITOSO (NO ALERT)
                     modalPago.classList.add('hidden');
                     modalPagoExito.classList.remove('hidden');
 
@@ -516,7 +510,6 @@
                 }).catch(err => {
                     console.error(err);
 
-                    // ❌ MODAL DE ERROR (NO ALERT)
                     modalPagoError.classList.remove("hidden");
 
                     cerrarPagoError.onclick = () => {
@@ -525,9 +518,6 @@
                 });
             });
 
-            // ----------------------------
-            // MODAL DE VACIAR CARRITO
-            // ----------------------------
 
             document.getElementById('btnVaciarCarrito')?.addEventListener('click', () => {
                 document.getElementById("modalVaciar").classList.remove("hidden");

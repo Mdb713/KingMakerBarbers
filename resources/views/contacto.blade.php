@@ -19,7 +19,6 @@
 
             <div class="grid md:grid-cols-3 gap-12">
 
-                <!-- Ubicación -->
                 <div
                     class="bg-medium-gray rounded-2xl border border-gold/10 p-8 text-center md:text-left transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
                     <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Ubicación</h4>
@@ -33,7 +32,6 @@
                     <p class="text-gray-400 mt-4 font-body">Calle Real 25, Sevilla</p>
                 </div>
 
-                <!-- Teléfono y Email -->
                 <div
                     class="bg-medium-gray rounded-2xl border border-gold/10 p-8 text-center md:text-left transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
                     <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Contacto</h4>
@@ -42,7 +40,6 @@
                     <p class="text-gray-500 text-sm font-body">Horario de respuesta: 24h</p>
                 </div>
 
-                <!-- Redes Sociales -->
                 <div
                     class="bg-medium-gray rounded-2xl border border-gold/10 p-8 text-center md:text-left transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
                     <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Síguenos</h4>
@@ -68,7 +65,6 @@
 
             </div>
 
-            <!-- Horario -->
             <div
                 class="mt-12 bg-medium-gray rounded-2xl border border-gold/10 p-8 max-w-2xl mx-auto transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
                 <h4 class="text-2xl font-heading mb-6 text-gold text-center drop-shadow-sm">Horario de Atención</h4>

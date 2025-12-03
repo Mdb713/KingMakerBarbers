@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cita;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ReservaController extends Controller
 {
     public function reservas()
     {
-        return view('reservas');
+    $peluqueros = User::where('rol', 'peluquero')->get();
+
+    return view('reservas', compact('peluqueros'));
     }
 
     public function store(Request $request)

@@ -32,7 +32,6 @@
         </div>
     </section>
 
-    <!-- SOBRE NOSOTROS Y SERVICIOS -->
     <section class="relative overflow-hidden">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo1.webp') }}" alt="Fondo Barbería"
@@ -41,7 +40,6 @@
         </div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
 
-            <!-- SOBRE NOSOTROS -->
             <div id="sobre-nosotros" class="py-24">
                 <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="1000">
                     <span class="text-gold text-sm font-bold uppercase tracking-widest">Nuestra Historia</span>
@@ -77,7 +75,6 @@
                 </div>
             </div>
 
-            <!-- SERVICIOS -->
             <div id="servicios" class="py-24">
                 <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
                     <span class="text-gold text-sm font-bold uppercase tracking-widest">Lo Que Ofrecemos</span>
@@ -104,7 +101,6 @@
         </div>
     </section>
 
-    <!-- EQUIPO -->
     <section id="equipo" class="reveal py-24 relative opacity-40 translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo4.webp') }}" alt="Fondo Equipo" class="w-full h-full object-cover object-center opacity-40 ">

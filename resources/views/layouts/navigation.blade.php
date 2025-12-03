@@ -39,11 +39,9 @@
 
 <body class="bg-dark text-gray-100 font-body">
 
-    <!-- NAVBAR -->
     <nav class="bg-dark-gray/95 backdrop-blur-sm shadow-2xl fixed top-0 left-0 w-full z-50 border-b border-gold/20 font-body">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-            <!-- Logo -->
             <a href="{{ url('/') }}" class="flex items-center gap-3 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-gold to-yellow-600 rounded-lg flex items-center justify-center transform group-hover:rotate-6 transition-transform">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-auto h-auto">
@@ -53,7 +51,6 @@
                 </h1>
             </a>
 
-            <!-- Desktop Menu -->
             <ul class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-wider items-center">
                 <li><a href="{{ url('/') }}" class="hover:text-gold transition-colors">Inicio</a></li>
                 <li><a href="{{ route('productos') }}" class="hover:text-gold transition-colors">Productos</a></li>
@@ -93,7 +90,6 @@
                     <li><a href="{{ route('login') }}" class="text-gold hover:text-yellow-500 transition-colors">Iniciar Sesión</a></li>
                 @endauth
 
-                <!-- Search Desktop -->
                 <li class="flex items-center relative">
                     <button id="searchBtnDesktop" class="p-2 bg-medium-gray rounded-full hover:bg-dark-gray transition-colors flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 512 512">
@@ -108,7 +104,6 @@
                 </li>
             </ul>
 
-            <!-- Mobile Menu & Search -->
             <div class="flex items-center gap-2 md:hidden">
                 <button id="searchBtnMobile" class="p-2 bg-medium-gray rounded-full hover:bg-dark-gray transition-colors flex items-center justify-center z-50">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 512 512">
@@ -139,16 +134,14 @@
         </ul>
     </nav>
 
-    <!-- NAVBAR SCRIPT -->
     <script>
-        // Toggle mobile menu
+
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         menuBtn?.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Toggle search inputs
         const searchBtnDesktop = document.getElementById('searchBtnDesktop');
         const searchInputDesktop = document.getElementById('searchInputDesktop');
         const searchBtnMobile = document.getElementById('searchBtnMobile');
@@ -165,7 +158,6 @@
         toggleInput(searchBtnDesktop, searchInputDesktop);
         toggleInput(searchBtnMobile, searchInputMobile);
 
-        // Search function
         const handleSearch = (query) => {
             query = query.toLowerCase().trim();
             const routes = [
@@ -194,14 +186,12 @@
             }
         }
 
-        // Enter key for search
         [searchInputDesktop, searchInputMobile].forEach(input => {
             input?.addEventListener('keypress', e => {
                 if (e.key === 'Enter') handleSearch(e.target.value);
             });
         });
 
-        // Logout
         document.getElementById('logoutBtn')?.addEventListener('click', function() {
             fetch("{{ route('logout') }}", {
                 method: "POST",

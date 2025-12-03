@@ -50,12 +50,6 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrito.pagar')->middleware('auth');
 Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar')->middleware('auth');
 
-// Página Reservas
-Route::get('/reserva', function () {
-    return view('reservas'); // crea la vista resources/views/reserva.blade.php
-})->name('reservas');
-Route::get('/reserva', [ReservaController::class, 'reservas'])->name('reservas')->middleware('auth');
-Route::post('/reserva', [ReservaController::class, 'store'])->name('reserva.store')->middleware('auth');
 
 // Página Contacto
 Route::get('/contacto', function () {

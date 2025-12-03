@@ -2,7 +2,6 @@
 
 @section('content')
 <section class="relative pt-32 pb-24 overflow-hidden">
-    {{-- Fondo --}}
     <div class="absolute inset-0">
         <img src="{{ asset('images/fondo5.webp') }}" alt="Fondo Perfil" class="w-full h-full object-cover object-center opacity-30">
         <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
@@ -11,7 +10,6 @@
     <div class="max-w-5xl mx-auto p-6 relative z-10 space-y-8 font-body">
         <h1 class="text-4xl md:text-5xl font-heading font-bold text-gold mb-6 drop-shadow-lg text-center">Mi Perfil</h1>
 
-        {{-- Mostrar errores del servidor --}}
         @if ($errors->any())
             <div class="bg-red-600 text-white p-3 rounded mb-4 font-body">
                 <ul class="list-disc pl-5">
@@ -22,7 +20,6 @@
             </div>
         @endif
 
-        {{-- Error de contraseñas (cliente) --}}
         <div id="passwordError" class="hidden bg-red-600 text-white p-3 rounded mb-4 font-body">
             <ul class="list-disc pl-5">
                 <li>Las contraseñas no coinciden.</li>
@@ -52,7 +49,6 @@
                     class="w-full p-3 rounded bg-dark border border-gold/20 text-gray-100 focus:border-gold outline-none transition font-body" required>
             </div>
 
-            {{-- Campos de contraseña --}}
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-gray-300 font-semibold mb-2">Nueva contraseña</label>

@@ -15,7 +15,6 @@
         }
     </style>
 
-    <!-- HERO SECTION -->
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="absolute inset-0 -z-10">
             <div class="bg-gradient-to-br from-dark via-dark-gray to-medium-gray w-full h-full"></div>
@@ -82,18 +81,15 @@
                     <div
                         class="product-card bg-medium-gray rounded-xl overflow-hidden border border-gold/10 hover:border-gold/30 hover:shadow-2xl group">
 
-                        <!-- Imagen del producto -->
                         <div class="relative overflow-hidden bg-dark-gray aspect-square">
                             <img src="{{ asset($producto->imagen_url) }}" alt="{{ $producto->nombre }}"
                                 class="product-image w-full h-full object-cover">
 
-                            <!-- Badge de stock -->
                             <div
                                 class="absolute top-3 right-3 bg-green-500/90 text-white text-xs font-semibold px-3 py-1 rounded-full">
                                 En stock
                             </div>
 
-                            <!-- Overlay hover -->
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                 <button
@@ -103,7 +99,6 @@
                             </div>
                         </div>
 
-                        <!-- Contenido -->
                         <div class="p-5">
                             <span class="text-xs text-gray-500 uppercase tracking-wider">Cuidado del cabello</span>
 
@@ -115,7 +110,6 @@
                                 {{ $producto->descripcion }}
                             </p>
 
-                            <!-- Rating -->
                             <div class="flex items-center gap-1 mb-4">
                                 @for ($i = 0; $i < 5; $i++)
                                     <svg class="w-4 h-4 {{ $i < 4 ? 'text-gold' : 'text-gray-600' }}" fill="currentColor"
@@ -127,7 +121,6 @@
                                 <span class="text-xs text-gray-500 ml-1">(24)</span>
                             </div>
 
-                            <!-- Precio y botón -->
                             <div class="flex items-center justify-between">
                                 <div>
                                     <span class="text-2xl font-bold text-gold">{{ $producto->precio }}€</span>
@@ -176,7 +169,6 @@
             @endif
         </section>
 
-        <!-- Beneficios -->
         <section class="mt-20 grid md:grid-cols-3 gap-6">
             <div class="bg-medium-gray p-6 rounded-xl border border-gold/10 text-center">
                 <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -214,7 +206,6 @@
     </div>
 
     <script>
-        // Búsqueda de productos
         const searchInput = document.getElementById('searchProduct');
         const productCards = document.querySelectorAll('.product-card');
 
