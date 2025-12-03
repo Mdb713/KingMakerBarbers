@@ -1,48 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HairLab - Estilo Masculino</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rye&display=swap" rel="stylesheet">
-
-    <!-- CSS personalizado -->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
-    <!-- Configuración Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gold': '#D4AF37',
-                        'dark': '#0A0A0A',
-                        'dark-gray': '#1A1A1A',
-                        'medium-gray': '#2D2D2D',
-                    },
-                    fontFamily: {
-                        heading: ['Rye', 'cursive'],
-                        body: ['Poppins', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-
-@extends('layouts.navigation')
+@extends('layouts.app')
 
 <body class="bg-dark text-gray-100 font-body">
 
-    <!-- SECCIÓN INICIO -->
     <section id="inicio" class="reveal pt-32 pb-24 relative overflow-hidden translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo3.webp') }}" alt="Fondo Inicio"
@@ -148,7 +107,7 @@
     <!-- EQUIPO -->
     <section id="equipo" class="reveal py-24 relative opacity-40 translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo3.webp') }}" alt="Fondo Equipo" class="w-full h-full object-cover object-center opacity-40 ">
+            <img src="{{ asset('images/fondo4.webp') }}" alt="Fondo Equipo" class="w-full h-full object-cover object-center opacity-40 ">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
@@ -176,37 +135,6 @@
         </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="reveal py-24 relative translate-y-10 transition-all duration-700">
-        <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo2.webp') }}" alt="Fondo Contacto" class="w-full opacity-40 h-full object-cover object-center">
-            <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
-        </div>
-        <div class="max-w-4xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-12">
-                <span class="text-gold text-sm font-bold uppercase tracking-widest font-body">Visítanos</span>
-                <h3 class="text-5xl font-heading mt-4 mb-8 text-white drop-shadow-md">Contacto</h3>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-medium-gray p-8 rounded-2xl border border-gold/10 text-center group hover:border-gold/30 transition-all">
-                    <h5 class="text-gold font-bold mb-2 uppercase text-sm tracking-wider font-body">Ubicación</h5>
-                    <p class="text-gray-400 font-body">Calle Real 25<br>Sevilla</p>
-                </div>
-                <div class="bg-medium-gray p-8 rounded-2xl border border-gold/10 text-center group hover:border-gold/30 transition-all">
-                    <h5 class="text-gold font-bold mb-2 uppercase text-sm tracking-wider font-body">Teléfono</h5>
-                    <p class="text-gray-400 font-body">+34 612 345 678</p>
-                </div>
-                <div class="bg-medium-gray p-8 rounded-2xl border border-gold/10 text-center group hover:border-gold/30 transition-all">
-                    <h5 class="text-gold font-bold mb-2 uppercase text-sm tracking-wider font-body">Email</h5>
-                    <p class="text-gray-400 font-body">contacto@hairlab.com</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    @include('layouts.footer')
-
-    <!-- AOS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({ once: true });

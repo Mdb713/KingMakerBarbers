@@ -8,7 +8,7 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Hash;
 
-class Controller 
+class Controller
 {
     /** Mostrar formulario de login */
     public function showLoginForm()
@@ -55,7 +55,7 @@ class Controller
             'password' => ['required', 'min:6', 'confirmed'],
         ]);
 
-        // Crear nuevo usuario
+        // Se crea un nuevo usuario
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
@@ -69,7 +69,6 @@ class Controller
         return redirect('/')->with('success', 'Registro completado con éxito.');
     }
 
-    /** Cerrar sesión */
     public function logout(Request $request)
     {
         Auth::logout();

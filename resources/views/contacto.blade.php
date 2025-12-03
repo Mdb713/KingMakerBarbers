@@ -1,241 +1,95 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HairLab - Contacto</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Rye&display=swap" rel="stylesheet">
-
-    <!-- TailwindCSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Anime.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-    <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gold': '#D4AF37',
-                        'dark': '#0A0A0A',
-                        'dark-gray': '#1A1A1A',
-                        'medium-gray': '#2D2D2D',
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        title: ['Rye', 'cursive'],
-                    },
-                }
-            }
-        }
-    </script>
-</head>
-
-<body class="bg-dark text-gray-100 font-sans">
-    @extends('layouts.navigation')
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-16 bg-gradient-to-br from-dark via-dark-gray to-medium-gray relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-20 left-20 w-96 h-96 bg-gold rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 right-20 w-96 h-96 bg-yellow-600 rounded-full blur-3xl"></div>
+@section('content')
+    <section id="contacto" class="reveal py-24 relative translate-y-10 transition-all duration-700">
+        <div class="absolute inset-0">
+            <img src="{{ asset('images/fondo2.webp') }}" alt="Fondo Contacto"
+                class="w-full opacity-40 h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
-        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
-            <span class="text-gold text-sm font-bold uppercase tracking-widest">Estamos Aquí Para Ti</span>
-            <h1 class="text-6xl font-title font-bold drop-shadow-gold mt-4 mb-6">
-                Ponte en <span class="text-gold">Contacto</span>
-            </h1>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto font-sans">
-                Envíanos un mensaje o visítanos en nuestra barbería
-            </p>
-        </div>
-    </section>
 
-    <!-- Form & Contact Info -->
-    <section class="py-16 bg-dark">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12">
-
-                <!-- Formulario de Contacto -->
-                <div class="bg-medium-gray rounded-3xl border border-gold/10 p-8 md:p-10">
-                    <h2 class="text-3xl font-title font-bold drop-shadow-gold mb-2 text-gold">Envíanos un Mensaje</h2>
-                    <p class="text-gray-400 mb-8 font-sans">Te responderemos lo antes posible</p>
-
-                    <form id="contactForm" class="space-y-6 font-sans">
-                        <div>
-                            <label class="text-gray-400 text-sm mb-2 block font-bold">Nombre Completo</label>
-                            <input type="text" placeholder="Tu nombre" required
-                                class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition">
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="text-gray-400 text-sm mb-2 block font-bold">Email</label>
-                                <input type="email" placeholder="tu@email.com" required
-                                    class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition">
-                            </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-2 block font-bold">Teléfono</label>
-                                <input type="tel" placeholder="+34 612 345 678"
-                                    class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="text-gray-400 text-sm mb-2 block font-bold">Asunto</label>
-                            <select
-                                class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none transition">
-                                <option>Información sobre servicios</option>
-                                <option>Consulta de precios</option>
-                                <option>Modificar una reserva</option>
-                                <option>Cancelar una reserva</option>
-                                <option>Sugerencias</option>
-                                <option>Otro</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="text-gray-400 text-sm mb-2 block font-bold">Mensaje</label>
-                            <textarea rows="5" placeholder="Cuéntanos en qué podemos ayudarte..." required
-                                class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none resize-none transition"></textarea>
-                        </div>
-
-                        <button type="submit"
-                            class="w-full bg-gold text-dark font-bold py-4 rounded-lg hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-lg shadow-gold/20">
-                            Enviar Mensaje
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Información de Contacto -->
-                <div class="space-y-8">
-
-                    <!-- Info General -->
-                    <div class="bg-medium-gray rounded-2xl border border-gold/10 p-8">
-                        <h3 class="text-2xl font-title font-bold drop-shadow-gold mb-6 text-gold">Información de Contacto</h3>
-                        <div class="space-y-6 font-sans">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center text-2xl flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Ubicación</h4>
-                                    <p class="text-gray-400">Calle Real 25<br>41001 Sevilla, España</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center text-2xl flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Teléfono</h4>
-                                    <p class="text-gray-400">+34 612 345 678</p>
-                                    <p class="text-gray-500 text-sm">Lun - Sáb: 9:00 - 21:00</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center text-2xl flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Email</h4>
-                                    <p class="text-gray-400">contacto@hairlab.com</p>
-                                    <p class="text-gray-500 text-sm">Respuesta en 24h</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center text-2xl flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Redes Sociales</h4>
-                                    <div class="flex gap-3 mt-2">
-                                        <a href="#" class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center hover:bg-gold/30 transition"></a>
-                                        <a href="#" class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center hover:bg-gold/30 transition"></a>
-                                        <a href="#" class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center hover:bg-gold/30 transition"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Horario -->
-                    <div class="bg-medium-gray rounded-2xl border border-gold/10 p-8">
-                        <h3 class="text-2xl font-title font-bold drop-shadow-gold mb-6 text-gold">Horario de Atención</h3>
-                        <div class="space-y-3 font-sans">
-                            <div class="flex justify-between items-center pb-3 border-b border-gold/10">
-                                <span class="text-gray-300">Lunes - Viernes</span>
-                                <span class="font-bold">9:00 - 21:00</span>
-                            </div>
-                            <div class="flex justify-between items-center pb-3 border-b border-gold/10">
-                                <span class="text-gray-300">Sábado</span>
-                                <span class="font-bold">10:00 - 20:00</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-300">Domingo</span>
-                                <span class="text-gold font-bold">Cerrado</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mapa -->
-                    <div class="bg-medium-gray rounded-2xl border border-gold/10 p-2 overflow-hidden">
-                        <div class="bg-dark-gray rounded-xl h-64 flex items-center justify-center font-sans">
-                            <div class="text-center">
-                                <div class="text-6xl mb-4"></div>
-                                <p class="text-gray-400">Mapa de ubicación</p>
-                                <p class="text-gray-500 text-sm mt-2">Calle Real 25, Sevilla</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Preguntas Frecuentes -->
-    <section class="py-16 bg-dark-gray">
-        <div class="max-w-4xl mx-auto px-6">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-title font-bold drop-shadow-gold mb-4">Preguntas <span class="text-gold">Frecuentes</span></h2>
-                <p class="text-gray-400 font-sans">Respuestas a las consultas más comunes</p>
+                <span class="text-gold text-sm font-bold uppercase tracking-widest font-body">Visítanos</span>
+                <h3 class="text-5xl font-heading mt-4 mb-8 text-white drop-shadow-md">Contacto</h3>
+                <p class="text-gray-400 font-body text-lg max-w-3xl mx-auto">
+                    Encuentra toda la información para visitarnos o comunicarte con nosotros. Estamos aquí para ti.
+                </p>
             </div>
 
-            <div class="space-y-4 font-sans">
-                <div class="bg-medium-gray rounded-xl border border-gold/10 overflow-hidden">
-                    <button class="w-full text-left p-6 flex justify-between items-center hover:bg-dark-gray transition">
-                        <h3 class="font-bold text-lg">¿Necesito cita previa?</h3>
-                        <span class="text-gold text-2xl">+</span>
-                    </button>
-                    <div class="px-6 pb-6 text-gray-400 hidden">
-                        Recomendamos hacer cita previa para garantizar tu horario preferido, aunque también aceptamos clientes sin cita según disponibilidad.
+            <div class="grid md:grid-cols-3 gap-12">
+
+                <!-- Ubicación -->
+                <div
+                    class="bg-medium-gray rounded-2xl border border-gold/10 p-8 text-center md:text-left transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
+                    <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Ubicación</h4>
+                    <div style="width:100%; height:300px;" class="rounded-lg overflow-hidden">
+                        <gmp-map center="37.3880,-5.9840" zoom="16">
+                            <gmp-advanced-marker position="37.3880,-5.9840" title="StreetMakerBarbers - Sevilla"
+                                icon="https://maps.google.com/mapfiles/ms/icons/red-dot.png">
+                            </gmp-advanced-marker>
+                        </gmp-map>
+                    </div>
+                    <p class="text-gray-400 mt-4 font-body">Calle Real 25, Sevilla</p>
+                </div>
+
+                <!-- Teléfono y Email -->
+                <div
+                    class="bg-medium-gray rounded-2xl border border-gold/10 p-8 text-center md:text-left transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
+                    <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Contacto</h4>
+                    <p class="text-gray-400 mb-2 font-body"><strong>Teléfono:</strong> +34 612 345 678</p>
+                    <p class="text-gray-400 mb-2 font-body"><strong>Email:</strong> contacto@hairlab.com</p>
+                    <p class="text-gray-500 text-sm font-body">Horario de respuesta: 24h</p>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div
+                    class="bg-medium-gray rounded-2xl border border-gold/10 p-8 text-center md:text-left transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
+                    <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Síguenos</h4>
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="https://www.instagram.com" target="_blank"
+                            class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center hover:bg-gold hover:text-dark transition text-lg">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com" target="_blank"
+                            class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center hover:bg-gold hover:text-dark transition text-lg">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.tiktok.com" target="_blank"
+                            class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center hover:bg-gold hover:text-dark transition text-lg">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank"
+                            class="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center hover:bg-gold hover:text-dark transition text-lg">
+                            <i class="fab fa-twitter"></i>
+                        </a>
                     </div>
                 </div>
-                <!-- Puedes duplicar estos bloques para otras FAQs -->
+
+            </div>
+
+            <!-- Horario -->
+            <div
+                class="mt-12 bg-medium-gray rounded-2xl border border-gold/10 p-8 max-w-2xl mx-auto transform transition-all duration-300 hover:scale-105 hover:bg-dark-gray hover:shadow-lg">
+                <h4 class="text-2xl font-heading mb-6 text-gold text-center drop-shadow-sm">Horario de Atención</h4>
+                <div class="space-y-3 font-body text-center">
+                    <div class="flex justify-between items-center border-b border-gold/10 px-6 py-2">
+                        <span class="text-gray-300">Lunes - Viernes</span>
+                        <span class="font-bold">9:00 - 21:00</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gold/10 px-6 py-2">
+                        <span class="text-gray-300">Sábado</span>
+                        <span class="font-bold">10:00 - 20:00</span>
+                    </div>
+                    <div class="flex justify-between items-center px-6 py-2">
+                        <span class="text-gray-300">Domingo</span>
+                        <span class="text-gold font-bold">Cerrado</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    @extends('layouts.footer')
-
-    <!-- Scripts -->
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
-        anime({
-            targets: '.bg-medium-gray',
-            translateY: [30, 0],
-            opacity: [0, 1],
-            delay: anime.stagger(100)
-        });
-    </script>
-</body>
-</html>
+@endsection
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlUnhTtF8Yme6b156rc1fApa0BzfZnbGc&libraries=maps,marker&v=beta">
+</script>

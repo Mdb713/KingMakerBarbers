@@ -23,7 +23,7 @@ class ReservaController extends Controller
 
         $cita = Cita::create([
             'cliente_id' => Auth::id(),
-            'peluquero_id' => $request->input('peluquero_id', 1), // opcional: barbero por defecto
+            'peluquero_id' => $request->input('peluquero_id', 1),
             'fecha' => $request->input('fecha'),
             'hora' => $request->input('hora'),
             'estado' => 'pendiente',

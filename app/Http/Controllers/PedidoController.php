@@ -22,7 +22,7 @@ class PedidoController extends Controller
 
         // Guardar pedido
         $pedido = Pedido::create([
-            'usuario_id' => auth()->id(), // Coincide con la columna de la tabla
+            'usuario_id' => auth()->id(),
             'metodo_pago' => $request->metodo_pago,
             'estado' => 'pendiente',
         ]);
@@ -31,7 +31,7 @@ class PedidoController extends Controller
         foreach ($request->carrito as $item) {
             DetallePedido::create([
                 'pedido_id' => $pedido->id,
-                'producto_id' => $item['id'], // Asegúrate de que cada item del carrito tenga 'id'
+                'producto_id' => $item['id'],
                 'cantidad' => $item['cantidad']
             ]);
         }

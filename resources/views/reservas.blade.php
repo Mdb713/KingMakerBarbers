@@ -1,23 +1,4 @@
-@extends('layouts.navigation')
-
-@section('content')
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HairLab - Reservar Cita</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rye&display=swap" rel="stylesheet">
-
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
+@extends('layouts.app')
 
 <body class="bg-dark text-gray-100 font-body">
 
@@ -105,8 +86,6 @@
             </div>
         </div>
     </section>
-
-    @extends('layouts.footer')
 </body>
 </html>
 @endsection
