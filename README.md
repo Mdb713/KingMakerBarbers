@@ -1,7 +1,7 @@
 # 👑 KingMaker Barbers
 
 <div align="center">
-  <img src="public/images/logo.png" alt="KingMaker Barbers Logo" width="200"/>
+  <img src="public/images/logo2.png" alt="KingMaker Barbers Logo" width="200"/>
   
   ### Plataforma Profesional de Gestión de Barbería
   
@@ -441,19 +441,6 @@ Si encuentras un bug, por favor abre un [issue](https://github.com/tu-usuario/ki
 - [ ] Integración con pasarelas de pago
 
 ---
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-```
-MIT License
-
-Copyright (c) 2024 KingMaker Barbers
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction...
 ```
 
 ---
@@ -462,10 +449,9 @@ in the Software without restriction...
 
 **Tu Nombre**
 
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- LinkedIn: [Tu Perfil](https://linkedin.com/in/tu-perfil)
-- Email: tuemail@dominio.com
-- Portfolio: [tu-portfolio.com](https://tu-portfolio.com)
+- GitHub: [@tu-usuario](https://github.com/Mdb713)
+- LinkedIn: [Tu Perfil](https://linkedin.com)
+- Email: marianodominguez456@gmail.com
 
 ---
 
@@ -479,21 +465,12 @@ in the Software without restriction...
 
 ---
 
-## 📞 Soporte
-
-¿Necesitas ayuda? Contáctanos:
-
-- 📧 Email: support@kingmaker.com
-- 💬 Discord: [Servidor de Discord](https://discord.gg/tu-servidor)
-- 📖 Documentación: [Wiki del Proyecto](https://github.com/tu-usuario/kingmaker-barbers/wiki)
-
----
 
 <div align="center">
   
   ### ⭐ Si este proyecto te fue útil, considera darle una estrella
   
-  **Hecho con ❤️ por [Tu Nombre]**
+  **Hecho con ❤️ por Mariano Domínguez Bermúdez**
   
   ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=tu-usuario.kingmaker-barbers)
   
