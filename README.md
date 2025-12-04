@@ -1,7 +1,7 @@
 # 👑 KingMaker Barbers
 
 <div align="center">
-  <img src="public/images/logo.png" alt="KingMaker Barbers Logo" width="200"/>
+  <img src="public/images/logo2.png" alt="KingMaker Barbers Logo" width="200"/>
   
   ### Plataforma Profesional de Gestión de Barbería
   
