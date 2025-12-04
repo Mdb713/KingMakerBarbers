@@ -14,6 +14,7 @@ class Cita extends Model
     protected $fillable = [
         'cliente_id',
         'peluquero_id',
+        'servicio',
         'fecha',
         'hora',
         'estado',
@@ -26,7 +27,9 @@ class Cita extends Model
 
     public function peluquero()
     {
-        return $this->belongsTo(User::class, 'peluquero_id');
+        return $this->belongsTo(User::class, 'peluquero_id', 'id')->withDefault([
+            'name' => 'Asignado aleatoriamente',
+        ]);
     }
 
     public function valoracion()

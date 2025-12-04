@@ -16,7 +16,9 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
-
+Route::post('/test-csrf', function () {
+    return 'ok';
+});
 // Enviar formulario de login
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->name('login.post');
@@ -35,8 +37,9 @@ Route::post('/register', [RegisteredUserController::class, 'register'])
 
 Route::middleware(['auth'])->group(function () {
     // Página de reservas
-    Route::get('/reserva', [ReservaController::class, 'reservas'])->name('reservas');
+    Route::get('/reserva', [ReservaController::class, 'create'])->name('reservas');
     Route::post('/reserva', [ReservaController::class, 'store'])->name('reservas.store');
+    Route::delete('/reserva/{cita}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -67,5 +70,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Valoraciones de los usuarios
-    Route::get('/valoraciones', [ValoracionesController::class, 'index'])->name('valoraciones');
-    Route::post('/valoraciones', [ValoracionesController::class, 'store'])->middleware('auth')->name('valoraciones.store');
+Route::get('/valoraciones', [ValoracionesController::class, 'index'])->name('valoraciones');
+Route::post('/valoraciones', [ValoracionesController::class, 'store'])->middleware('auth')->name('valoraciones.store');

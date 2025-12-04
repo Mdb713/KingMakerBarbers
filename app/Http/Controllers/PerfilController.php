@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class PerfilController extends Controller
 {
@@ -18,13 +19,18 @@ class PerfilController extends Controller
     {
         $usuario = Auth::user();
 
+        // Validación
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:usuarios,email,' . $usuario->id,
-            'telefono' => 'nullable|string|max:20',
-            'direccion' => 'nullable|string|max:255',
-            'contraseña' => 'nullable|min:6',
+            'email' => ['required', 'max:255', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/', 'unique:usuarios,email,' . $usuario->id],
+            'telefono' => 'required|digits_between:9,15',
+            'direccion' => 'required|string|max:255',
+            'contraseña' => ['nullable', Password::min(8)],
+            'contraseña_confirm' => 'same:contraseña',
+        ], [
+            'contraseña_confirm.same' => 'La confirmación de la contraseña no coincide.',
+            'telefono.digits_between' => 'El teléfono debe contener entre 9 y 15 números.',
         ]);
 
         // Asignar valores del formulario
@@ -34,7 +40,7 @@ class PerfilController extends Controller
         $usuario->telefono = $request->telefono;
         $usuario->direccion = $request->direccion;
 
-        // Sólo actualiza la contraseña si el usuario la cambia
+        // Actualizar la contraseña solo si se cambió
         if ($request->filled('contraseña')) {
             $usuario->contraseña = Hash::make($request->contraseña);
         }

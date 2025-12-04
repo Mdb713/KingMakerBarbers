@@ -85,19 +85,19 @@
                             <img src="{{ asset($producto->imagen_url) }}" alt="{{ $producto->nombre }}"
                                 class="product-image w-full h-full object-cover">
 
-                            <div
-                                class="absolute top-3 right-3 bg-green-500/90 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                                En stock
-                            </div>
-
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                <button
-                                    class="w-full bg-gold hover:bg-yellow-500 text-dark font-bold py-2 rounded-lg transition-all transform translate-y-4 group-hover:translate-y-0">
-                                    Vista rápida
-                                </button>
-                            </div>
+                            @if ($producto->stock > 0)
+                                <div
+                                    class="absolute top-3 right-3 bg-green-500/90 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                                    En stock
+                                </div>
+                            @else
+                                <div
+                                    class="absolute top-3 right-3 bg-red-500/90 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                                    Sin stock
+                                </div>
+                            @endif
                         </div>
+
 
                         <div class="p-5">
                             <span class="text-xs text-gray-500 uppercase tracking-wider">Cuidado del cabello</span>
@@ -131,7 +131,8 @@
                                         @csrf
                                         <input type="hidden" name="producto_id" value="{{ $producto->id }}">
                                         <button type="submit"
-                                            class="bg-gold hover:bg-yellow-500 text-dark px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2 group">
+                                            class="bg-gold hover:bg-yellow-500 text-dark px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2 group"
+                                            @if ($producto->stock <= 0) disabled class="opacity-50 cursor-not-allowed" @endif>
                                             <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform"
                                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -167,41 +168,6 @@
                     <p class="text-gray-500">Pronto añadiremos nuevos productos a nuestro catálogo</p>
                 </div>
             @endif
-        </section>
-
-        <section class="mt-20 grid md:grid-cols-3 gap-6">
-            <div class="bg-medium-gray p-6 rounded-xl border border-gold/10 text-center">
-                <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-lg mb-2">Envío Gratis</h3>
-                <p class="text-gray-400 text-sm">En pedidos superiores a 30€</p>
-            </div>
-
-            <div class="bg-medium-gray p-6 rounded-xl border border-gold/10 text-center">
-                <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-lg mb-2">Garantía de Calidad</h3>
-                <p class="text-gray-400 text-sm">Productos 100% originales</p>
-            </div>
-
-            <div class="bg-medium-gray p-6 rounded-xl border border-gold/10 text-center">
-                <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                    </svg>
-                </div>
-                <h3 class="font-semibold text-lg mb-2">Devolución Fácil</h3>
-                <p class="text-gray-400 text-sm">30 días para devoluciones</p>
-            </div>
         </section>
     </div>
 
