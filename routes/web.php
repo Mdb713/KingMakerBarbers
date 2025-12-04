@@ -7,10 +7,11 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ValoracionesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome'); // o tu vista principal
+    return view('index'); // o tu vista principal
 })->name('home');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
@@ -42,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
     Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
 });
-
+// Página de los productos y el carrito
 Route::get('/productos', [ProductoController::class, 'mostrarProductos'])->name('productos');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
@@ -50,12 +51,12 @@ Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('
 Route::post('/carrito/pagar', [CarritoController::class, 'pagar'])->name('carrito.pagar')->middleware('auth');
 Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar')->middleware('auth');
 
-
-// Página Contacto
+// Pagina de Contacto
 Route::get('/contacto', function () {
-    return view('contacto'); // crea la vista resources/views/contacto.blade.php
+    return view('contacto');
 })->name('contacto');
 
+// Panel de Administración
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/panel', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.panel');
     Route::get('/usuarios/create', [AdminController::class, 'createUser'])->name('usuarios.create');
@@ -64,3 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/usuarios/{user}', [AdminController::class, 'updateUser'])->name('usuarios.update');
     Route::delete('/usuarios/{user}', [AdminController::class, 'deleteUser'])->name('usuarios.delete');
 });
+
+// Valoraciones de los usuarios
+    Route::get('/valoraciones', [ValoracionesController::class, 'index'])->name('valoraciones');
+    Route::post('/valoraciones', [ValoracionesController::class, 'store'])->middleware('auth')->name('valoraciones.store');

@@ -2,10 +2,11 @@
 
 <body class="bg-dark text-gray-100 font-body">
 
-    <section id="inicio" class="reveal pt-32 pb-24 relative overflow-hidden translate-y-10 transition-all duration-700">
+    <section id="inicio"
+        class="reveal pt-32 pb-24 relative overflow-hidden translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo3.webp') }}" alt="Fondo Inicio"
-                 class="w-full h-full object-cover object-center opacity-30">
+                class="w-full h-full object-cover object-center opacity-30">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center relative z-10">
@@ -17,7 +18,8 @@
                     Eleva tu <span class="text-gold">estilo</span> al siguiente nivel
                 </h2>
                 <p class="mb-8 text-lg text-gray-400 leading-relaxed font-body">
-                    Cortes de precisión, afeitados clásicos y tratamientos exclusivos. Donde la tradición encuentra la modernidad.
+                    Cortes de precisión, afeitados clásicos y tratamientos exclusivos. Donde la tradición encuentra la
+                    modernidad.
                 </p>
                 <div class="flex gap-4">
                     <a href="#"
@@ -35,7 +37,7 @@
     <section class="relative overflow-hidden">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo1.webp') }}" alt="Fondo Barbería"
-                 class="w-full h-full object-cover object-center opacity-20">
+                class="w-full h-full object-cover object-center opacity-20">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
@@ -48,20 +50,25 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div data-aos="fade-right" data-aos-duration="1000">
                         <p class="text-lg text-gray-300 mb-6 leading-relaxed font-body">
-                            En HairLab nos especializamos en ofrecer cortes de cabello y barba de calidad premium para hombres modernos. Nuestro equipo combina técnicas tradicionales y tendencias actuales, asegurando un estilo impecable y un servicio personalizado.
+                            En HairLab nos especializamos en ofrecer cortes de cabello y barba de calidad premium para
+                            hombres modernos. Nuestro equipo combina técnicas tradicionales y tendencias actuales,
+                            asegurando un estilo impecable y un servicio personalizado.
                         </p>
                         <p class="text-gray-400 leading-relaxed font-body">
-                            Más de 10 años de experiencia en la peluquería masculina nos avalan, con un ambiente acogedor donde cada cliente se siente único.
+                            Más de 10 años de experiencia en la peluquería masculina nos avalan, con un ambiente
+                            acogedor donde cada cliente se siente único.
                         </p>
                     </div>
                     <div class="grid grid-cols-2 gap-6" data-aos="fade-left" data-aos-duration="1000">
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">10+</div>
-                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Años de Experiencia</div>
+                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Años de Experiencia
+                            </div>
                         </div>
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">5K+</div>
-                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Clientes Satisfechos</div>
+                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Clientes Satisfechos
+                            </div>
                         </div>
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">100%</div>
@@ -69,7 +76,8 @@
                         </div>
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">3</div>
-                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Barberos Expertos</div>
+                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Barberos Expertos
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,19 +89,25 @@
                     <h3 class="text-5xl font-heading mt-4 text-white drop-shadow-md">Nuestros Servicios</h3>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
+                    <div
+                        class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
                         <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Corte de Cabello</h4>
-                        <p class="text-gray-400 mb-6 font-body">Cortes clásicos, modernos y personalizados según tu estilo y tipo de cabello.</p>
+                        <p class="text-gray-400 mb-6 font-body">Cortes clásicos, modernos y personalizados según tu
+                            estilo y tipo de cabello.</p>
                         <div class="text-gold font-bold text-sm uppercase tracking-wider font-body">Desde 25€</div>
                     </div>
-                    <div class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
+                    <div
+                        class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
                         <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Barba & Afeitado</h4>
-                        <p class="text-gray-400 mb-6 font-body">Diseñamos la barba a tu medida y ofrecemos afeitados de lujo con toallas calientes.</p>
+                        <p class="text-gray-400 mb-6 font-body">Diseñamos la barba a tu medida y ofrecemos afeitados de
+                            lujo con toallas calientes.</p>
                         <div class="text-gold font-bold text-sm uppercase tracking-wider font-body">Desde 20€</div>
                     </div>
-                    <div class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
+                    <div
+                        class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
                         <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Tratamientos Capilares</h4>
-                        <p class="text-gray-400 mb-6 font-body">Cuidado intensivo para cabello y barba, hidratación y productos premium.</p>
+                        <p class="text-gray-400 mb-6 font-body">Cuidado intensivo para cabello y barba, hidratación y
+                            productos premium.</p>
                         <div class="text-gold font-bold text-sm uppercase tracking-wider font-body">Desde 35€</div>
                     </div>
                 </div>
@@ -103,7 +117,8 @@
 
     <section id="equipo" class="reveal py-24 relative opacity-40 translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
-            <img src="{{ asset('images/fondo4.webp') }}" alt="Fondo Equipo" class="w-full h-full object-cover object-center opacity-40 ">
+            <img src="{{ asset('images/fondo4.webp') }}" alt="Fondo Equipo"
+                class="w-full h-full object-cover object-center opacity-40 ">
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
@@ -112,29 +127,82 @@
                 <h3 class="text-5xl font-heading mt-4 text-white drop-shadow-md">Nuestro Equipo</h3>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="group bg-medium-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="group bg-medium-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all text-center"
+                    data-aos="fade-up" data-aos-delay="100">
                     <h4 class="text-2xl font-heading mb-2 text-gold drop-shadow-sm">Juan Pérez</h4>
                     <p class="text-sm text-gray-400 uppercase tracking-wider mb-3 font-body">Master Barber</p>
-                    <p class="text-gray-400 font-body">Especializado en cortes clásicos y modernos con más de 10 años de experiencia.</p>
+                    <p class="text-gray-400 font-body">Especializado en cortes clásicos y modernos con más de 10 años de
+                        experiencia.</p>
                 </div>
-                <div class="group bg-medium-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="group bg-medium-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all text-center"
+                    data-aos="fade-up" data-aos-delay="200">
                     <h4 class="text-2xl font-heading mb-2 text-gold drop-shadow-sm">Carlos López</h4>
                     <p class="text-sm text-gray-400 uppercase tracking-wider mb-3 font-body">Beard Specialist</p>
-                    <p class="text-gray-400 font-body">Experto en barba y afeitado de lujo, atención al detalle garantizada.</p>
+                    <p class="text-gray-400 font-body">Experto en barba y afeitado de lujo, atención al detalle
+                        garantizada.</p>
                 </div>
-                <div class="group bg-medium-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="group bg-medium-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all text-center"
+                    data-aos="fade-up" data-aos-delay="300">
                     <h4 class="text-2xl font-heading mb-2 text-gold drop-shadow-sm">Miguel Torres</h4>
                     <p class="text-sm text-gray-400 uppercase tracking-wider mb-3 font-body">Hair Treatment Expert</p>
-                    <p class="text-gray-400 font-body">Especialista en tratamientos capilares y cuidado premium para hombres.</p>
+                    <p class="text-gray-400 font-body">Especialista en tratamientos capilares y cuidado premium para
+                        hombres.</p>
                 </div>
             </div>
         </div>
     </section>
+    {{-- @if (Auth::check())
+        <div class="max-w-2xl mx-auto mb-12 p-6 bg-dark-gray rounded-2xl border border-gold/10">
+            <h4 class="text-2xl font-heading text-gold mb-4">Deja tu reseña</h4>
+            @if (session('success'))
+                <div class="bg-green-600 p-3 rounded mb-4 text-white">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <form action="{{ route('valoraciones.store') }}" method="POST" class="space-y-4">
+                @csrf
+                <div>
+                    <label class="text-gray-400 font-bold block mb-1">Selecciona Peluquero</label>
+                    <select name="peluquero_id" required
+                        class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-2 text-gray-100">
+                        <option value="">-- Elige un peluquero --</option>
+                        @foreach ($peluqueros as $p)
+                            <option value="{{ $p->id }}">{{ $p->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label class="text-gray-400 font-bold block mb-1">Calificación</label>
+                    <select name="calificacion" required
+                        class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-2 text-gray-100">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <option value="{{ $i }}">{{ $i }} ★</option>
+                        @endfor
+                    </select>
+                </div>
+                <div>
+                    <label class="text-gray-400 font-bold block mb-1">Comentario</label>
+                    <textarea name="comentario" rows="3"
+                        class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-2 text-gray-100"
+                        placeholder="Escribe tu reseña..."></textarea>
+                </div>
+                <button type="submit"
+                    class="bg-gold text-dark font-bold px-6 py-2 rounded-lg hover:bg-yellow-500 transition-all">Enviar
+                    Reseña</button>
+            </form>
+        </div>
+    @else
+        <p class="text-gray-400 text-center mb-8">Debes <a href="{{ route('login') }}"
+                class="text-gold font-bold">iniciar sesión</a> para dejar una reseña.</p>
+    @endif --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({ once: true });
+        AOS.init({
+            once: true
+        });
     </script>
 
 </body>
+
 </html>

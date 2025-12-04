@@ -70,32 +70,46 @@
 
         @if ($usuarios->hasPages())
             <div class="mt-6 flex justify-center">
-                <nav class="inline-flex -space-x-px rounded-md shadow-sm" role="navigation" aria-label="Pagination">
+                <nav role="navigation" aria-label="Pagination" class="inline-flex -space-x-px rounded-md shadow-sm">
                     @if ($usuarios->onFirstPage())
                         <span
-                            class="px-3 py-2 ml-0 text-gray-400 bg-gray-700 cursor-not-allowed rounded-l-md">&laquo;</span>
+                            class="inline-flex items-center px-3 py-2 text-gray-500 bg-dark-gray border border-gold/20 cursor-not-allowed rounded-l-md">
+                            &laquo;
+                        </span>
                     @else
                         <a href="{{ $usuarios->previousPageUrl() }}"
-                            class="px-3 py-2 ml-0 text-gold bg-dark hover:bg-gray-800 rounded-l-md font-semibold transition">&laquo;</a>
+                            class="inline-flex items-center px-3 py-2 text-gold bg-dark-gray border border-gold/20 rounded-l-md hover:bg-gold hover:text-dark transition-all font-semibold">
+                            &laquo;
+                        </a>
                     @endif
-
                     @foreach ($usuarios->getUrlRange(1, $usuarios->lastPage()) as $page => $url)
                         @if ($page == $usuarios->currentPage())
-                            <span class="px-3 py-2 bg-gold text-dark font-semibold">{{ $page }}</span>
+                            <span
+                                class="inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-dark bg-gold border border-gold/20 cursor-default">
+                                {{ $page }}
+                            </span>
                         @else
                             <a href="{{ $url }}"
-                                class="px-3 py-2 bg-dark hover:bg-gray-800 text-gold font-semibold transition">{{ $page }}</a>
+                                class="inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gold bg-dark-gray border border-gold/20 hover:bg-gold hover:text-dark transition-all">
+                                {{ $page }}
+                            </a>
                         @endif
                     @endforeach
                     @if ($usuarios->hasMorePages())
                         <a href="{{ $usuarios->nextPageUrl() }}"
-                            class="px-3 py-2 text-gold bg-dark hover:bg-gray-800 rounded-r-md font-semibold transition">&raquo;</a>
+                            class="inline-flex items-center px-3 py-2 -ml-px text-gold bg-dark-gray border border-gold/20 rounded-r-md hover:bg-gold hover:text-dark transition-all font-semibold">
+                            &raquo;
+                        </a>
                     @else
-                        <span class="px-3 py-2 text-gray-400 bg-gray-700 cursor-not-allowed rounded-r-md">&raquo;</span>
+                        <span
+                            class="inline-flex items-center px-3 py-2 -ml-px text-gray-500 bg-dark-gray border border-gold/20 cursor-not-allowed rounded-r-md">
+                            &raquo;
+                        </span>
                     @endif
                 </nav>
             </div>
         @endif
+
 
     </div>
     <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-60 hidden justify-center items-center z-50">

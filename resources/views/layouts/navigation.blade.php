@@ -39,11 +39,13 @@
 
 <body class="bg-dark text-gray-100 font-body">
 
-    <nav class="bg-dark-gray/95 backdrop-blur-sm shadow-2xl fixed top-0 left-0 w-full z-50 border-b border-gold/20 font-body">
+    <nav
+        class="bg-dark-gray/95 backdrop-blur-sm shadow-2xl fixed top-0 left-0 w-full z-50 border-b border-gold/20 font-body">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
             <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-                <div class="w-14 h-14 bg-gradient-to-br from-gold to-yellow-600 rounded-lg flex items-center justify-center transform group-hover:rotate-6 transition-transform">
+                <div
+                    class="w-14 h-14 bg-gradient-to-br from-gold to-yellow-600 rounded-lg flex items-center justify-center transform group-hover:rotate-6 transition-transform">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-auto h-auto">
                 </div>
                 <h1 class="text-3xl font-heading">
@@ -55,13 +57,16 @@
                 <li><a href="{{ url('/') }}" class="hover:text-gold transition-colors">Inicio</a></li>
                 <li><a href="{{ route('productos') }}" class="hover:text-gold transition-colors">Productos</a></li>
                 <li><a href="{{ route('reservas') }}" class="hover:text-gold transition-colors">Reservas</a></li>
+                <li><a href="{{ route('valoraciones') }}" class="hover:text-gold transition-colors">Reseñas</a></li>
                 <li><a href="{{ route('contacto') }}" class="hover:text-gold transition-colors">Contacto</a></li>
 
                 @auth
                     @if (auth()->user()->is_admin)
-                        <li><a href="{{ route('admin.panel') }}" class="text-gold hover:text-yellow-500 transition-colors font-semibold">Panel</a></li>
+                        <li><a href="{{ route('admin.panel') }}"
+                                class="text-gold hover:text-yellow-500 transition-colors font-semibold">Panel</a></li>
                     @endif
-                    <li><a href="{{ route('perfil.index') }}" class="text-gold hover:text-yellow-500 transition-colors">Perfil</a></li>
+                    <li><a href="{{ route('perfil.index') }}"
+                            class="text-gold hover:text-yellow-500 transition-colors">Perfil</a></li>
 
                     <li class="relative">
                         <a href="{{ route('carrito.ver') }}" class="hover:text-gold transition-colors flex items-center">
@@ -76,25 +81,29 @@
                                     : 0;
                             @endphp
                             @if ($cantidad > 0)
-                                <span class="absolute -top-2 -right-2 bg-gold text-dark text-xs font-bold rounded-full px-2 py-0.5">{{ $cantidad }}</span>
+                                <span
+                                    class="absolute -top-2 -right-2 bg-gold text-dark text-xs font-bold rounded-full px-2 py-0.5">{{ $cantidad }}</span>
                             @endif
                         </a>
                     </li>
 
                     <li class="flex items-center">
-                        <button id="logoutBtn" class="text-gold hover:text-yellow-500 transition-colors flex items-center justify-center h-10 w-10">
+                        <button id="logoutBtn"
+                            class="text-gold hover:text-yellow-500 transition-colors flex items-center justify-center h-10 w-10">
                             <i class="fas fa-right-from-bracket text-lg"></i>
                         </button>
                     </li>
                 @else
-                    <li><a href="{{ route('login') }}" class="text-gold hover:text-yellow-500 transition-colors">Iniciar Sesión</a></li>
+                    <li><a href="{{ route('login') }}" class="text-gold hover:text-yellow-500 transition-colors">Iniciar
+                            Sesión</a></li>
                 @endauth
 
                 <li class="flex items-center relative">
-                    <button id="searchBtnDesktop" class="p-2 bg-medium-gray rounded-full hover:bg-dark-gray transition-colors flex items-center justify-center">
+                    <button id="searchBtnDesktop"
+                        class="p-2 bg-medium-gray rounded-full hover:bg-dark-gray transition-colors flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 512 512">
-                            <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none"
-                                stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
+                            <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
+                                fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
                                 stroke-width="32" d="M338.29 338.29L448 448" />
                         </svg>
@@ -105,7 +114,8 @@
             </ul>
 
             <div class="flex items-center gap-2 md:hidden">
-                <button id="searchBtnMobile" class="p-2 bg-medium-gray rounded-full hover:bg-dark-gray transition-colors flex items-center justify-center z-50">
+                <button id="searchBtnMobile"
+                    class="p-2 bg-medium-gray rounded-full hover:bg-dark-gray transition-colors flex items-center justify-center z-50">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 512 512">
                         <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none"
                             stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
@@ -122,20 +132,44 @@
 
         <ul id="mobileMenu"
             class="hidden flex-col gap-4 p-6 text-sm font-medium uppercase tracking-wider md:hidden bg-dark-gray/95 border-t border-gold/20 font-body">
+
             <li><a href="{{ url('/') }}" class="hover:text-gold transition-colors block">Inicio</a></li>
             <li><a href="{{ route('productos') }}" class="hover:text-gold transition-colors block">Productos</a></li>
             <li><a href="{{ route('reservas') }}" class="hover:text-gold transition-colors block">Reservas</a></li>
+            <li><a href="{{ route('valoraciones') }}" class="hover:text-gold transition-colors block">Reseñas</a>
+            </li>
             <li><a href="{{ route('contacto') }}" class="hover:text-gold transition-colors block">Contacto</a></li>
+
             @auth
                 @if (auth()->user()->is_admin)
-                    <li><a href="{{ route('admin.panel') }}" class="text-gold hover:text-yellow-500 transition-colors font-semibold block">Panel</a></li>
+                    <li><a href="{{ route('admin.panel') }}"
+                            class="text-gold hover:text-yellow-500 transition-colors font-semibold block">Panel</a></li>
                 @endif
+
+                <li><a href="{{ route('perfil.index') }}"
+                        class="text-gold hover:text-yellow-500 transition-colors block">Perfil</a></li>
+
+                {{-- Logout para móvil --}}
+                <li>
+                    <button id="logoutBtnMobile"
+                        class="w-full text-left text-gold hover:text-yellow-500 transition-colors flex items-center gap-2">
+                        <i class="fas fa-right-from-bracket"></i> Logout
+                    </button>
+                </li>
+            @else
+                {{-- Botón de inicio de sesión para móvil --}}
+                <li>
+                    <a href="{{ route('login') }}"
+                        class="w-full text-left text-gold hover:text-yellow-500 transition-colors flex items-center gap-2">
+                        <i class="fas fa-right-to-bracket"></i> Iniciar Sesión
+                    </a>
+                </li>
             @endauth
         </ul>
+
     </nav>
 
     <script>
-
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         menuBtn?.addEventListener('click', () => {
@@ -160,13 +194,30 @@
 
         const handleSearch = (query) => {
             query = query.toLowerCase().trim();
-            const routes = [
-                { keywords: ['productos','producto','barba','cabello','shampoo','aceite'], url:'/productos' },
-                { keywords: ['reservas','cita','horario'], url:'/reservas' },
-                { keywords: ['contacto','mensaje','soporte'], url:'/contacto' },
-                { keywords: ['perfil','usuario','cuenta'], url:'/perfil' },
-                { keywords: ['inicio','home'], url:'/' },
-                 { keywords: ['carro','carrito,pedido'], url:'/carrito' }
+            const routes = [{
+                    keywords: ['productos', 'producto', 'barba', 'cabello', 'shampoo', 'aceite'],
+                    url: '/productos'
+                },
+                {
+                    keywords: ['reservas', 'cita', 'horario'],
+                    url: '/reservas'
+                },
+                {
+                    keywords: ['contacto', 'mensaje', 'soporte'],
+                    url: '/contacto'
+                },
+                {
+                    keywords: ['perfil', 'usuario', 'cuenta'],
+                    url: '/perfil'
+                },
+                {
+                    keywords: ['inicio', 'home'],
+                    url: '/'
+                },
+                {
+                    keywords: ['carro', 'carrito,pedido'],
+                    url: '/carrito'
+                }
             ];
 
             let found = false;
@@ -192,7 +243,21 @@
             });
         });
 
+        // Logout escritorio
         document.getElementById('logoutBtn')?.addEventListener('click', function() {
+            fetch("{{ route('logout') }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    "Content-Type": "application/json"
+                },
+            }).then(() => {
+                window.location.href = "{{ url('/') }}";
+            });
+        });
+
+        // Logout móvil
+        document.getElementById('logoutBtnMobile')?.addEventListener('click', function() {
             fetch("{{ route('logout') }}", {
                 method: "POST",
                 headers: {
