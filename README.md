@@ -1,6 +1,6 @@
 # 🎯 KingMaker Barbers
 
-![Logo](public/images/logo.png)
+![Logo](public/images/logo2.png)
 
 **KingMaker Barbers** es una plataforma web completa para la gestión y promoción de servicios de barbería.  
 Permite a los usuarios registrarse, reservar citas, comprar productos, dejar reseñas y gestionar su perfil, mientras que los administradores tienen un panel para gestionar usuarios, productos y reservas.
