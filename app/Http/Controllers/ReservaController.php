@@ -6,18 +6,16 @@ use App\Models\Cita;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ReservaController extends Controller
 {
-    /**
-     * Mostrar el formulario de reservas con peluqueros, citas y horas ocupadas.
-     */
+
     public function create()
     {
-        // Obtener todos los peluqueros
+
         $peluqueros = User::where('rol', 'peluquero')->get();
 
-        // Obtener todas las citas futuras para controlar las horas ocupadas
         $citasFuturas = Cita::where('fecha', '>=', now()->format('Y-m-d'))->get();
 
         $horasReservadas = [];
@@ -25,7 +23,6 @@ class ReservaController extends Controller
             $horasReservadas[$cita->fecha][] = $cita->hora;
         }
 
-        // Obtener las citas del usuario autenticado
         $citas = auth()->user()
             ? auth()->user()->citasComoCliente()->with('peluquero')->orderBy('fecha', 'asc')->get()
             : collect();
@@ -33,34 +30,52 @@ class ReservaController extends Controller
         return view('reservas', compact('peluqueros', 'horasReservadas', 'citas'));
     }
 
-    /**
-     * Guardar una nueva reserva.
-     */
+
     public function store(Request $request)
     {
+
         $request->validate([
-            'fecha' => 'required|date',
+            'fecha' => 'required|date|after_or_equal:today',
             'hora' => 'required',
             'servicio' => 'required|string',
             'peluquero_id' => 'nullable|exists:usuarios,id',
         ]);
 
-        // Validar que la hora no esté ocupada para esa fecha
+        $citasActivas = Cita::where('cliente_id', Auth::id())
+            ->where('fecha', '>=', Carbon::today()->format('Y-m-d'))
+            ->count();
+
+        if (Carbon::parse($request->fecha)->isBefore(today())) {
+            return redirect()->back()->withErrors([
+                'fecha' => 'No puedes reservar en una fecha pasada.'
+            ])->withInput();
+        }
+
         $existeCita = Cita::where('fecha', $request->fecha)
             ->where('hora', $request->hora)
             ->exists();
 
         if ($existeCita) {
-            return redirect()->back()->withErrors(['hora' => 'Esta hora ya está reservada. Por favor, elige otra.'])->withInput();
+            return redirect()->back()->withErrors([
+                'hora' => 'Esta hora ya está reservada. Por favor, elige otra.'
+            ])->withInput();
         }
 
-        // Si no se elige peluquero, asignar uno aleatorio
+        $usuarioTieneCita = Cita::where('cliente_id', Auth::id())
+            ->where('fecha', $request->fecha)
+            ->where('hora', $request->hora)
+            ->exists();
+
+        if ($usuarioTieneCita) {
+            return redirect()->back()->withErrors([
+                'hora' => 'Ya tienes una reserva en esa fecha y hora.'
+            ])->withInput();
+        }
         $peluquero_id = $request->input('peluquero_id');
-        if (! $peluquero_id) {
+        if (!$peluquero_id) {
             $peluquero_id = User::where('rol', 'peluquero')->inRandomOrder()->value('id');
         }
 
-        // Crear la cita
         Cita::create([
             'cliente_id' => Auth::id(),
             'peluquero_id' => $peluquero_id,
@@ -75,7 +90,6 @@ class ReservaController extends Controller
 
     public function destroy(Cita $cita)
     {
-        // Solo el dueño de la cita puede eliminarla
         if ($cita->cliente_id !== auth()->id()) {
             abort(403, 'No autorizado');
         }

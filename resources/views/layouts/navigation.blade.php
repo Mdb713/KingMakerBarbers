@@ -149,7 +149,6 @@
                 <li><a href="{{ route('perfil.index') }}"
                         class="text-gold hover:text-yellow-500 transition-colors block">Perfil</a></li>
 
-                {{-- Logout para móvil --}}
                 <li>
                     <button id="logoutBtnMobile"
                         class="w-full text-left text-gold hover:text-yellow-500 transition-colors flex items-center gap-2">
@@ -157,7 +156,6 @@
                     </button>
                 </li>
             @else
-                {{-- Botón de inicio de sesión para móvil --}}
                 <li>
                     <a href="{{ route('login') }}"
                         class="w-full text-left text-gold hover:text-yellow-500 transition-colors flex items-center gap-2">
@@ -242,8 +240,6 @@
                 if (e.key === 'Enter') handleSearch(e.target.value);
             });
         });
-
-        // Logout escritorio
         document.getElementById('logoutBtn')?.addEventListener('click', function() {
             fetch("{{ route('logout') }}", {
                 method: "POST",
@@ -256,7 +252,6 @@
             });
         });
 
-        // Logout móvil
         document.getElementById('logoutBtnMobile')?.addEventListener('click', function() {
             fetch("{{ route('logout') }}", {
                 method: "POST",

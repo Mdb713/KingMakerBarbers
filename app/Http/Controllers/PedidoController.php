@@ -4,30 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pedido;
-use App\Models\DetallePedido; // Modelo para detallepedido
+use App\Models\DetallePedido;
 
 class PedidoController extends Controller
 {
-    /**
-     * Guardar un nuevo pedido
-     */
+
     public function store(Request $request)
     {
-        // Validar datos
+
         $request->validate([
             'metodo_pago' => 'required|string',
             'carrito' => 'required|array',
             'total' => 'required'
         ]);
 
-        // Guardar pedido
         $pedido = Pedido::create([
             'usuario_id' => auth()->id(),
             'metodo_pago' => $request->metodo_pago,
             'estado' => 'pendiente',
         ]);
 
-        // Guardar detalle de cada producto
         foreach ($request->carrito as $item) {
             DetallePedido::create([
                 'pedido_id' => $pedido->id,

@@ -18,7 +18,6 @@ class ValoracionPeluquero extends Model
         'calificacion',
     ];
 
-    // 🔗 Relaciones
     public function cliente()
     {
         return $this->belongsTo(User::class, 'usuario_id');

@@ -8,13 +8,31 @@ use Illuminate\Http\Request;
 
 class ValoracionesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $peluqueros = User::where('rol', 'peluquero')->get();
 
-        $valoraciones = ValoracionPeluquero::with(['cliente', 'peluquero'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
+        $query = ValoracionPeluquero::with(['cliente', 'peluquero']);
+
+        if ($request->filled('orden')) {
+            if ($request->orden === 'mejor') {
+                $query->orderBy('calificacion', 'desc');
+            } elseif ($request->orden === 'peor') {
+                $query->orderBy('calificacion', 'asc');
+            } else {
+                $query->orderBy('created_at', 'desc');
+            }
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        if ($request->filled('peluquero') && $request->peluquero != 'todos') {
+            $query->whereHas('peluquero', function ($q) use ($request) {
+                $q->where('id', $request->peluquero);
+            });
+        }
+
+        $valoraciones = $query->paginate(5)->withQueryString();
 
         return view('valoraciones', compact('valoraciones', 'peluqueros'));
     }

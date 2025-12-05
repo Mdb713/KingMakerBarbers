@@ -151,51 +151,6 @@
             </div>
         </div>
     </section>
-    {{-- @if (Auth::check())
-        <div class="max-w-2xl mx-auto mb-12 p-6 bg-dark-gray rounded-2xl border border-gold/10">
-            <h4 class="text-2xl font-heading text-gold mb-4">Deja tu reseña</h4>
-            @if (session('success'))
-                <div class="bg-green-600 p-3 rounded mb-4 text-white">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <form action="{{ route('valoraciones.store') }}" method="POST" class="space-y-4">
-                @csrf
-                <div>
-                    <label class="text-gray-400 font-bold block mb-1">Selecciona Peluquero</label>
-                    <select name="peluquero_id" required
-                        class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-2 text-gray-100">
-                        <option value="">-- Elige un peluquero --</option>
-                        @foreach ($peluqueros as $p)
-                            <option value="{{ $p->id }}">{{ $p->nombre }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div>
-                    <label class="text-gray-400 font-bold block mb-1">Calificación</label>
-                    <select name="calificacion" required
-                        class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-2 text-gray-100">
-                        @for ($i = 1; $i <= 5; $i++)
-                            <option value="{{ $i }}">{{ $i }} ★</option>
-                        @endfor
-                    </select>
-                </div>
-                <div>
-                    <label class="text-gray-400 font-bold block mb-1">Comentario</label>
-                    <textarea name="comentario" rows="3"
-                        class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-2 text-gray-100"
-                        placeholder="Escribe tu reseña..."></textarea>
-                </div>
-                <button type="submit"
-                    class="bg-gold text-dark font-bold px-6 py-2 rounded-lg hover:bg-yellow-500 transition-all">Enviar
-                    Reseña</button>
-            </form>
-        </div>
-    @else
-        <p class="text-gray-400 text-center mb-8">Debes <a href="{{ route('login') }}"
-                class="text-gold font-bold">iniciar sesión</a> para dejar una reseña.</p>
-    @endif --}}
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({

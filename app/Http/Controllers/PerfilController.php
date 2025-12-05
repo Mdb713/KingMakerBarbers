@@ -18,8 +18,6 @@ class PerfilController extends Controller
     public function update(Request $request)
     {
         $usuario = Auth::user();
-
-        // Validación
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
@@ -33,14 +31,12 @@ class PerfilController extends Controller
             'telefono.digits_between' => 'El teléfono debe contener entre 9 y 15 números.',
         ]);
 
-        // Asignar valores del formulario
         $usuario->nombre = $request->nombre;
         $usuario->apellidos = $request->apellidos;
         $usuario->email = $request->email;
         $usuario->telefono = $request->telefono;
         $usuario->direccion = $request->direccion;
 
-        // Actualizar la contraseña solo si se cambió
         if ($request->filled('contraseña')) {
             $usuario->contraseña = Hash::make($request->contraseña);
         }
