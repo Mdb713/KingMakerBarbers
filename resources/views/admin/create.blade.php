@@ -47,6 +47,7 @@
             <select name="rol" class="w-full p-2 rounded bg-gray-800 border border-gray-700 text-white">
                 <option value="admin">Admin</option>
                 <option value="cliente">Cliente</option>
+                <option value="peluquero">Peluquero</option>
             </select>
         </div>
 

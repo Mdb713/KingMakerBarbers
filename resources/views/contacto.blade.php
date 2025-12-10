@@ -3,8 +3,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlUnhTtF8Yme6b156rc1fApa0BzfZnbGc&libraries=maps,marker&v=beta">
 </script>
 @section('content')
-    <section id="contacto" class="reveal py-24 relative overflow-hidden">
-
+    <section id="contacto" class="py-24 relative overflow-hidden">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo2.webp') }}" alt="Fondo Contacto"
                 class="w-full h-full object-cover object-center transform scale-110 transition-transform duration-1000">

@@ -17,8 +17,8 @@
             </div>
         @endif
 
-        <div class="overflow-hidden border border-gray-700 rounded-xl shadow-lg">
-            <table class="w-full text-left">
+        <div class="overflow-x-auto border border-gray-700 rounded-xl shadow-lg">
+            <table class="w-full min-w-[600px] text-left">
                 <thead class="bg-dark-gray text-gold uppercase text-sm">
                     <tr>
                         <th class="p-3">ID</th>
@@ -38,7 +38,7 @@
                                 <span class="px-2 py-1 text-xs rounded bg-gray-700 text-gray-200">{{ $usuario->rol }}</span>
                             </td>
                             <td class="p-3">
-                                <div class="flex justify-center gap-3">
+                                <div class="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3">
                                     <a href="{{ route('usuarios.edit', $usuario->id) }}"
                                         class="bg-blue-500 hover:bg-blue-400 text-white font-medium px-3 py-1 rounded-md shadow transition-all duration-200">
                                         Editar
@@ -67,6 +67,7 @@
                 </tbody>
             </table>
         </div>
+
 
         @if ($usuarios->hasPages())
             <div class="mt-6 flex justify-center">

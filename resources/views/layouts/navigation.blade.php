@@ -45,10 +45,10 @@
 
             <a href="{{ url('/') }}" class="flex items-center gap-3 group">
                 <div
-                    class="w-14 h-14 bg-gradient-to-br from-gold to-yellow-600 rounded-lg flex items-center justify-center transform group-hover:rotate-6 transition-transform">
+                    class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gold to-yellow-600 rounded-lg flex items-center justify-center transform group-hover:rotate-6 transition-transform">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-auto h-auto">
                 </div>
-                <h1 class="text-3xl font-heading">
+                <h1 class="text-lg sm:text-3xl font-heading">
                     <span class="text-gold">KingMaker</span><span class="text-white">Barbers</span>
                 </h1>
             </a>
@@ -132,23 +132,19 @@
 
         <ul id="mobileMenu"
             class="hidden flex-col gap-4 p-6 text-sm font-medium uppercase tracking-wider md:hidden bg-dark-gray/95 border-t border-gold/20 font-body">
-
             <li><a href="{{ url('/') }}" class="hover:text-gold transition-colors block">Inicio</a></li>
             <li><a href="{{ route('productos') }}" class="hover:text-gold transition-colors block">Productos</a></li>
             <li><a href="{{ route('reservas') }}" class="hover:text-gold transition-colors block">Reservas</a></li>
-            <li><a href="{{ route('valoraciones') }}" class="hover:text-gold transition-colors block">Reseñas</a>
-            </li>
+            <li><a href="{{ route('valoraciones') }}" class="hover:text-gold transition-colors block">Reseñas</a></li>
             <li><a href="{{ route('contacto') }}" class="hover:text-gold transition-colors block">Contacto</a></li>
-
+            <li><a href="{{ route('carrito.ver') }}" class="hover:text-gold transition-colors block">Carrito</a></li>
             @auth
                 @if (auth()->user()->is_admin)
                     <li><a href="{{ route('admin.panel') }}"
                             class="text-gold hover:text-yellow-500 transition-colors font-semibold block">Panel</a></li>
                 @endif
-
                 <li><a href="{{ route('perfil.index') }}"
                         class="text-gold hover:text-yellow-500 transition-colors block">Perfil</a></li>
-
                 <li>
                     <button id="logoutBtnMobile"
                         class="w-full text-left text-gold hover:text-yellow-500 transition-colors flex items-center gap-2">
@@ -164,7 +160,6 @@
                 </li>
             @endauth
         </ul>
-
     </nav>
 
     <script>

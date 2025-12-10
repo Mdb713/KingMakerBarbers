@@ -50,6 +50,7 @@
                     @if (auth()->id() === $user->id) disabled @endif>
                     <option value="admin" {{ old('rol', $user->rol) == 'admin' ? 'selected' : '' }}>Admin</option>
                     <option value="cliente" {{ old('rol', $user->rol) == 'cliente' ? 'selected' : '' }}>Cliente</option>
+                     <option value="peluquero" {{ old('rol', $user->rol) == 'peluquero' ? 'selected' : '' }}>Peluquero</option>
                 </select>
 
                 {{-- Si edita su propio usuario, enviamos el rol REAL en un campo oculto --}}

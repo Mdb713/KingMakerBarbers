@@ -15,10 +15,9 @@
         }
     </style>
 
-    <section class="relative pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 -z-10">
-            <div class="bg-gradient-to-br from-dark via-dark-gray to-medium-gray w-full h-full"></div>
-        </div>
+    <section class="pt-32 pb-16 relative overflow-hidden bg-dark"style="background: url('{{ asset('images/fondo3.webp') }}') center/cover no-repeat;">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/90"></div>
+
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
             <h1 class="text-5xl md:text-6xl font-heading text-gold mb-6 drop-shadow-2xl">Nuestros Productos</h1>
@@ -58,21 +57,6 @@
                 <div>
                     <h2 class="text-2xl font-heading text-gold">Catálogo Completo</h2>
                     <p class="text-gray-400 text-sm mt-1">{{ count($productos) }} productos disponibles</p>
-                </div>
-
-                <div class="flex gap-2">
-                    <button class="p-2 bg-medium-gray hover:bg-gold hover:text-dark rounded-lg transition-all"
-                        title="Vista grid">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" />
-                        </svg>
-                    </button>
-                    <button class="p-2 bg-medium-gray hover:bg-gold hover:text-dark rounded-lg transition-all"
-                        title="Vista lista">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" />
-                        </svg>
-                    </button>
                 </div>
             </div>
 

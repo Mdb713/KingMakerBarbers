@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-    $usuarios = User::paginate(5);
+    $usuarios = User::orderBy('id', 'asc')->paginate(5);
     return view('admin.panel', compact('usuarios'));
     }
 
@@ -25,7 +25,7 @@ class AdminController extends Controller
         'apellidos' => 'required|string|max:255',
         'email' => 'required|email|unique:usuarios,email',
         'contraseña' => 'required|string|min:6',
-        'rol' => 'required|in:admin,cliente',
+        'rol' => 'required|in:admin,cliente,peluquero',
     ]);
 
     User::create([
@@ -50,7 +50,7 @@ class AdminController extends Controller
             'nombre' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
             'email' => 'required|email|unique:usuarios,email,'.$user->id,
-            'rol' => 'required|in:admin,cliente',
+            'rol' => 'required|in:admin,cliente,peluquero',
             'password' => 'nullable|string|min:6',
         ]);
 

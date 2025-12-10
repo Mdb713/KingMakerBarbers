@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class ReservaController extends Controller
 {
-
     public function create()
     {
 
@@ -30,10 +29,8 @@ class ReservaController extends Controller
         return view('reservas', compact('peluqueros', 'horasReservadas', 'citas'));
     }
 
-
     public function store(Request $request)
     {
-
         $request->validate([
             'fecha' => 'required|date|after_or_equal:today',
             'hora' => 'required',
@@ -41,13 +38,22 @@ class ReservaController extends Controller
             'peluquero_id' => 'nullable|exists:usuarios,id',
         ]);
 
+
+        $peluqueros = User::where('rol', 'peluquero')->get();
+
+        if ($request->peluquero_id === null && $peluqueros->isEmpty()) {
+            return back()
+                ->withErrors(['peluquero_id' => 'No hay peluqueros disponibles en este momento.'])
+                ->withInput();
+        }
+
         $citasActivas = Cita::where('cliente_id', Auth::id())
             ->where('fecha', '>=', Carbon::today()->format('Y-m-d'))
             ->count();
 
         if (Carbon::parse($request->fecha)->isBefore(today())) {
             return redirect()->back()->withErrors([
-                'fecha' => 'No puedes reservar en una fecha pasada.'
+                'fecha' => 'No puedes reservar en una fecha pasada.',
             ])->withInput();
         }
 
@@ -57,7 +63,7 @@ class ReservaController extends Controller
 
         if ($existeCita) {
             return redirect()->back()->withErrors([
-                'hora' => 'Esta hora ya está reservada. Por favor, elige otra.'
+                'hora' => 'Esta hora ya está reservada. Por favor, elige otra.',
             ])->withInput();
         }
 
@@ -68,12 +74,13 @@ class ReservaController extends Controller
 
         if ($usuarioTieneCita) {
             return redirect()->back()->withErrors([
-                'hora' => 'Ya tienes una reserva en esa fecha y hora.'
+                'hora' => 'Ya tienes una reserva en esa fecha y hora.',
             ])->withInput();
         }
+
         $peluquero_id = $request->input('peluquero_id');
-        if (!$peluquero_id) {
-            $peluquero_id = User::where('rol', 'peluquero')->inRandomOrder()->value('id');
+        if (! $peluquero_id) {
+            $peluquero_id = $peluqueros->random()->id;
         }
 
         Cita::create([

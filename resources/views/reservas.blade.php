@@ -85,13 +85,11 @@
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="text-gray-400 text-sm mb-2 block font-bold font-body">Fecha</label>
-                                    <input id="fechaInput" type="text" placeholder="Selecciona una fecha"
+                                    <input id="fechaInput" name="fecha" type="text" placeholder="Selecciona una fecha"
                                         class="w-full bg-dark-gray border border-gold/20 rounded-lg px-4 py-3 text-gray-100 focus:border-gold outline-none focus:ring-1 focus:ring-gold transition-all cursor-pointer">
-
-
-                                        @error('fecha')
-                                            <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
-                                        @enderror
+                                    @error('fecha')
+                                        <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div>

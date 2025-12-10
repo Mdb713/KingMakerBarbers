@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
-<body class="bg-dark text-gray-100 font-body">
-
-    <section id="inicio"
-        class="reveal pt-32 pb-24 relative overflow-hidden translate-y-10 transition-all duration-700">
+@section('content')
+    <section id="inicio" class="reveal pt-32 pb-24 relative overflow-hidden translate-y-10 transition-all duration-700">
         <div class="absolute inset-0">
             <img src="{{ asset('images/fondo3.webp') }}" alt="Fondo Inicio"
                 class="w-full h-full object-cover object-center opacity-30">
@@ -41,7 +39,7 @@
             <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
         </div>
         <div class="max-w-6xl mx-auto px-6 relative z-10">
-
+            <!-- Sobre Nosotros -->
             <div id="sobre-nosotros" class="py-24">
                 <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="1000">
                     <span class="text-gold text-sm font-bold uppercase tracking-widest">Nuestra Historia</span>
@@ -62,13 +60,11 @@
                     <div class="grid grid-cols-2 gap-6" data-aos="fade-left" data-aos-duration="1000">
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">10+</div>
-                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Años de Experiencia
-                            </div>
+                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Años de Experiencia</div>
                         </div>
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">5K+</div>
-                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Clientes Satisfechos
-                            </div>
+                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Clientes Satisfechos</div>
                         </div>
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">100%</div>
@@ -76,31 +72,32 @@
                         </div>
                         <div class="bg-medium-gray p-6 rounded-2xl border border-gold/10">
                             <div class="text-4xl font-heading text-gold mb-2">3</div>
-                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Barberos Expertos
-                            </div>
+                            <div class="text-gray-400 text-sm uppercase tracking-wider font-body">Barberos Expertos</div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Servicios -->
             <div id="servicios" class="py-24">
                 <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
                     <span class="text-gold text-sm font-bold uppercase tracking-widest">Lo Que Ofrecemos</span>
                     <h3 class="text-5xl font-heading mt-4 text-white drop-shadow-md">Nuestros Servicios</h3>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Servicio individual -->
                     <div
                         class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
                         <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Corte de Cabello</h4>
-                        <p class="text-gray-400 mb-6 font-body">Cortes clásicos, modernos y personalizados según tu
-                            estilo y tipo de cabello.</p>
+                        <p class="text-gray-400 mb-6 font-body">Cortes clásicos, modernos y personalizados según tu estilo y
+                            tipo de cabello.</p>
                         <div class="text-gold font-bold text-sm uppercase tracking-wider font-body">Desde 25€</div>
                     </div>
                     <div
                         class="group bg-gradient-to-br from-medium-gray to-dark-gray p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-all hover:-translate-y-2 shadow-xl">
                         <h4 class="text-2xl font-heading mb-4 text-gold drop-shadow-sm">Barba & Afeitado</h4>
-                        <p class="text-gray-400 mb-6 font-body">Diseñamos la barba a tu medida y ofrecemos afeitados de
-                            lujo con toallas calientes.</p>
+                        <p class="text-gray-400 mb-6 font-body">Diseñamos la barba a tu medida y ofrecemos afeitados de lujo
+                            con toallas calientes.</p>
                         <div class="text-gold font-bold text-sm uppercase tracking-wider font-body">Desde 20€</div>
                     </div>
                     <div
@@ -151,13 +148,11 @@
             </div>
         </div>
     </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({
             once: true
         });
     </script>
-
-</body>
-
-</html>
+@endsection
