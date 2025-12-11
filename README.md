@@ -158,7 +158,7 @@ Antes de comenzar, asegúrate de tener instalado:
 ### 1️⃣ Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/kingmaker-barbers.git
+git clone https://github.com/Mdb713/KingMakerBarbers.git
 cd kingmaker-barbers
 ```
 
@@ -462,7 +462,7 @@ in the Software without restriction...
 
 **Mariano Dominguez Bermúdez**
 
-- GitHub: [@tu-usuario](https://github.com/Mdb713o)
+- GitHub: [@tu-usuario](https://github.com/Mdb713)
 - Email: mariandominguez456@gmail.com
 
 ---
