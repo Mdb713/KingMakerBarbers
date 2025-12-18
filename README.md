@@ -122,8 +122,8 @@
   </tr>
   <tr>
     <td align="center" width="200">
-      <img src="https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg" width="50" height="50" alt="MySQL"/>
-      <br><strong>MySQL</strong>
+      <img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg" width="50" height="50" alt="MySQL"/>
+      <br><strong>PostgreSql</strong>
       <br><sub>Base de datos</sub>
     </td>
     <td align="center" width="200">
@@ -148,7 +148,7 @@ Antes de comenzar, asegúrate de tener instalado:
 - **PHP >= 8.1**
 - **Composer >= 2.0**
 - **Node.js >= 18.x** y **NPM >= 9.x**
-- **MySQL >= 8.0** o **MariaDB >= 10.3**
+- **Postgress >= 18** o **MariaDB >= 10.3**
 - **Git**
 
 ---
