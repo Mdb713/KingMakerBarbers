@@ -11,7 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'usuarios';
-    // Laravel puede manejar los timestamps automáticamente
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -29,12 +29,14 @@ class User extends Authenticatable
         'contraseña',
     ];
 
+    protected $casts = [
+        'fecha_registro' => 'datetime',
+    ];
+
     public function getAuthPassword()
     {
         return $this->contraseña;
     }
-
-
     public function pedidos()
     {
         return $this->hasMany(Pedido::class, 'usuario_id');
@@ -63,5 +65,14 @@ class User extends Authenticatable
     public function notificaciones()
     {
         return $this->hasMany(Notificacion::class, 'usuario_id');
+    }
+    public function getIsAdminAttribute()
+    {
+        return $this->rol === 'admin';
+    }
+
+    public function getNombreCompletoAttribute()
+    {
+        return trim("{$this->nombre} {$this->apellidos}");
     }
 }
