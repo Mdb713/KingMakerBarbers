@@ -462,7 +462,7 @@ in the Software without restriction...
 
 **Mariano Dominguez Bermúdez**
 
-- GitHub: [@tu-usuario](https://github.com/Mdb713)
+- GitHub: https://github.com/Mdb713
 - Email: mariandominguez456@gmail.com
 
 ---
